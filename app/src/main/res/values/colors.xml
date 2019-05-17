@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- 색을 추가하기 시작한 부분 -->
+    <color name="tab_blue">#5673DB</color>
 </resources>
