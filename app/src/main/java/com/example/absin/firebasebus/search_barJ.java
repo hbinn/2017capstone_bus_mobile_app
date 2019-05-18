@@ -22,6 +22,7 @@ import android.widget.TabHost;
 
 
         Button btn1 = (Button) findViewById(R.id.btn);
+        Button btn2 = (Button) findViewById(R.id.btn);
 
         TabHost tabHost = (TabHost)findViewById(R.id.th);
         tabHost.setup();
@@ -46,7 +47,16 @@ import android.widget.TabHost;
         tabSpecBusStop.setContent(R.id.busstop);
         tabHost.addTab(tabSpecBusStop);
 
-        tabHost.setCurrentTab(0);
+        btn2.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Intent intent = new Intent(getApplicationContext(), BusStop_activity.class);
+                                        startActivity(intent);
+                                    }
+                                });
+
+
+      //  tabHost.setCurrentTab(0);
 
 
 
