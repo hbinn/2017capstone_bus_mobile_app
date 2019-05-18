@@ -6,4 +6,9 @@
 
     <!-- 색을 추가하기 시작한 부분 -->
     <color name="tab_blue">#5673DB</color>
+
+
+    <color name="seoul_red">#D71717</color>
+    <color name="kyonggi_blue">#3752B3</color>
+    <color name="inc_green">#13AB20</color>
 </resources>

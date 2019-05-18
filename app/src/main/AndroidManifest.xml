@@ -24,8 +24,8 @@
         <activity android:name=".search_barJ"
             android:label="검색창 액티비티"/>
 
-        <activity android:name=".NumberSearch"
-            android:label="검색 결과 액티비티"/>
+        <activity android:name=".Station_After_Number"
+            android:label="버스검색 후 정류장"/>
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
