@@ -34,6 +34,7 @@
             android:label="버스정류장 검색결과"/>
 
 
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_push"/>

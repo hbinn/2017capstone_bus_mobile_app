@@ -24,12 +24,12 @@ public class BusStop_activity extends AppCompatActivity {
     BusStop_item busStop = null;
     RecyclerView recyclerView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.busstop);
-
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view2);
         recyclerView.setHasFixedSize(true);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -40,6 +40,7 @@ public class BusStop_activity extends AppCompatActivity {
         MyAsyncTask myAsyncTask = new MyAsyncTask();
         myAsyncTask.execute();
     }
+
 
     public class MyAsyncTask extends AsyncTask<String, Void, String> {
 
@@ -56,14 +57,14 @@ public class BusStop_activity extends AppCompatActivity {
                 InputStream is = url.openStream();
                 XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
                 XmlPullParser parser = factory.newPullParser();
-                parser.setInput(new InputStreamReader(is, "UTF-8"));
+                parser.setInput(new InputStreamReader(is, "UTF-8")); //input stream으로부터 데이터 입력받기
 
                 String tag;
                 int eventType = parser.getEventType();
 
                 while(eventType != XmlPullParser.END_DOCUMENT){
                     switch (eventType){
-                        case XmlPullParser.START_DOCUMENT:
+                        case XmlPullParser.START_DOCUMENT: //파싱 시작 단계
                             list = new ArrayList<BusStop_item>();
                             break;
                         case XmlPullParser.END_DOCUMENT:

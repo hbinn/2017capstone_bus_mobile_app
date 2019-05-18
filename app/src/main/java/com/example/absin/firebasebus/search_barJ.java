@@ -22,7 +22,7 @@ import android.widget.TabHost;
 
 
         Button btn1 = (Button) findViewById(R.id.btn);
-        Button btn2 = (Button) findViewById(R.id.btn);
+        Button btn2 = (Button) findViewById(R.id.btn2);
 
         TabHost tabHost = (TabHost)findViewById(R.id.th);
         tabHost.setup();
@@ -41,19 +41,17 @@ import android.widget.TabHost;
         });
 
 
-
-
         TabHost.TabSpec tabSpecBusStop = tabHost.newTabSpec("BUSSTOP").setIndicator("정류장");
         tabSpecBusStop.setContent(R.id.busstop);
         tabHost.addTab(tabSpecBusStop);
 
         btn2.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        Intent intent = new Intent(getApplicationContext(), BusStop_activity.class);
-                                        startActivity(intent);
-                                    }
-                                });
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), BusStop_activity.class);
+                startActivity(intent);
+            }
+        });
 
 
       //  tabHost.setCurrentTab(0);

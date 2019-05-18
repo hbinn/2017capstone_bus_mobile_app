@@ -2,8 +2,7 @@ package com.example.absin.firebasebus;
 
 import android.app.Activity;
 
-public class BusStop_item extends Activity {
-
+public class BusStop_item {
 
     String stationId;
     String stationName;
