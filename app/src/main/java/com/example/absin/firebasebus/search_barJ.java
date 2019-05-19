@@ -119,7 +119,7 @@ public class search_barJ extends AppCompatActivity {
                 XmlPullParser parser = factory.newPullParser();
                 parser.setInput(new InputStreamReader(is, "UTF-8"));
 
-                String tag;
+
                 int eventType = parser.getEventType();
 
                 while(eventType != XmlPullParser.END_DOCUMENT){

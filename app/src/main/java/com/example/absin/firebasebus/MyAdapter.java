@@ -91,13 +91,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.tv_routeName.setText(mList.get(position).routeName);
         String sub = mList.get(position).districtCd;
 
-        //서울 빨강, 경기 파랑, 인천 초록
-        if(sub.equals("1")) holder.tv_routeName.setTextColor(Color.RED);
-        else if(sub.equals("2")) holder.tv_routeName.setTextColor(Color.BLUE);
-        else holder.tv_routeName.setTextColor(Color.GREEN);
+
+            //holder.tv_routeName.setTextColor(Color.rgb(178, 204, 255));
+
+
 
         String region = mList.get(position).regionName;
         String region2[] = region.split(",");
+
+        if(region2[0].equals("서울")) {
+            holder.tv_routeName.setTextColor(Color.rgb(255, 69, 19));
+        }else {
+            holder.tv_routeName.setTextColor(Color.rgb(19, 164, 225));
+        }
 
         holder.tv_regionName.setText(region2[0]);
         holder.tv_routeTypeName.setText(mList.get(position).routeTypeName);
