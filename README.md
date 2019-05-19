@@ -1,12 +1,13 @@
 # firebaseBus
 
-<<<<<<<on going project>>>>>>>>>>>
+--on going project--
+
 This repository is for saving & version controllering 2019 Capstone graduation project.
 
 Our subject is "Personalize Bus Application Service for whom taking bus to go to work everyday".
 Our main speclailities are 
 1. setting a repetitive bus alarm for daily routine. (sending a notification before bus arrives at the user choosen station)
-2. giving a notification to let user know the time for  getting of a bus. (prevent passing away user's destination station)
+2. giving a notification to let user know the time for  getting off a bus. (prevent passing away user's destination station)
 3. If user wrote thinks to do in our memo section brefore, then we will give this memo when making a bus alarm notification. 
 4. (keep it going...)
 
