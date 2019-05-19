@@ -27,6 +27,14 @@
         <activity android:name=".Station_After_Number"
             android:label="버스검색 후 정류장"/>
 
+        <activity android:name=".BusStop_activity"
+            android:label="버스정류장 액티비티"/>
+
+        <activity android:name=".BusStop_item"
+            android:label="버스정류장 검색결과"/>
+
+
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_push"/>
