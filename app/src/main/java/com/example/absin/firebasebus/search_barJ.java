@@ -1,5 +1,6 @@
 package com.example.absin.firebasebus;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -54,6 +55,15 @@ public class search_barJ extends AppCompatActivity {
 
         et1 = (EditText) findViewById(R.id.et2);
 
+        Button btn2 = (Button) findViewById(R.id.btn2);
+
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), BusStop_activity.class);
+                startActivity(intent);
+            }
+        });
 
 
 

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--꼭 여기에 id를 지정해야했나? 하는 위젯 부분은 relativelayout 위치 조정하느라 id 지정해둠-->
+
 <LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -18,17 +20,14 @@
             android:padding="10dip"
             android:orientation="horizontal">
 
-
             <TextView
                 android:layout_marginLeft="8dip"
                 android:textColor="#C0BFBF"
                 android:textSize="15dp"
                 android:id="@+id/main_search"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:clickable="true"
-                android:focusable="true"
                 />
 
             <ImageView
@@ -40,7 +39,7 @@
         <RelativeLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -49,26 +48,25 @@
 
 
             <LinearLayout
-                android:layout_above="@id/main_memo"
+                android:layout_above="@+id/main_memo"
+                android:id="@+id/list_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <ListView
                     android:id="@+id/main_list"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent">
                 </ListView>
 
 
             </LinearLayout>
 
             <LinearLayout
+                android:layout_above="@+id/boundary"
                 android:id="@+id/main_memo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/main_tap"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
                 android:orientation="horizontal">
 
                 <TextView
@@ -93,128 +91,21 @@
 
 
         <ImageView
-            android:layout_above="@+id/main_tap"
+            android:layout_above="@+id/include_mainbar"
+            android:id="@+id/boundary"
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:background="#D2D2C8" />
 
-
-        <LinearLayout
-            android:id="@+id/main_tap"
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:layout_height="50dip" >
-
-
-            <View
-                android:layout_width="1px"
-                android:layout_height="fill_parent"
-                android:background="#E7E7E0" />
-
-            <LinearLayout
-                android:id="@+id/main_tap_home"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:clickable="true"
-                android:background="?attr/selectableItemBackground">
-
-                <ImageView
-                    android:layout_width="29dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/homeicon" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="1px"
-                android:layout_height="fill_parent"
-                android:background="#E7E7E0" />
-
-            <LinearLayout
-                android:id="@+id/main_tap_map"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_map" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="1px"
-                android:layout_height="fill_parent"
-                android:background="#E7E7E0" />
-
-            <LinearLayout
-                android:id="@+id/main_tap_alarm"
+            <include
+                android:layout_alignParentBottom="true"
+                android:id="@+id/include_mainbar"
+                layout="@layout/mainbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical" >
-
-                <ImageView
-                    android:src="@drawable/aramicon"
-                    android:layout_width="27dp"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="1px"
-                android:layout_height="fill_parent"
-                android:background="#E7E7E0" />
-
-            <LinearLayout
-                android:id="@+id/main_tap_secretary"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical" >
-
-                <ImageView
-                    android:src="@drawable/listicon"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="1px"
-                android:layout_height="fill_parent"
-                android:background="#E7E7E0" />
-
-            <LinearLayout
-                android:id="@+id/main_tap_setting"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical" >
-
-                <ImageView
-                    android:src="@drawable/settingicon"
-                    android:layout_width="29dp"
-                    android:layout_height="wrap_content" />
+                android:layout_height="50dip"/>
 
 
 
-            </LinearLayout>
-        </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
 

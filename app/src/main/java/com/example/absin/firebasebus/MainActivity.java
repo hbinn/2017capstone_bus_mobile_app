@@ -49,6 +49,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //텍스트 부분 누르면 안 넘어가져서 넘어가게 따로 만듬.
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), search_barJ.class);
+                startActivity(intent);
+            }
+        });
+
         main_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,6 +76,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 main_map.setBackgroundResource(R.color.tab_blue);
                 //여긴 클릭을 하면 아예 파란색으로 바꾸는 걸로 해봤는데 생각보다 촌스러워서 그림자 지는게 더 좋을것 같다.
+
+                /*문제: 이 버튼을 파란색으로 만들었으면
+                1) 다른 버튼을 파란색이 아니게 바꿔주거나
+                2) (메인바가 표기되는 화면으로 넘어갈경우) 거기서 파란버튼으로 바꿔주는 걸 호출해야함
+                -->안그러면 이미 예전에 눌렀던 버튼 모두가 파란색으로 되어있음
+                --->넘어갈때는 그림자 이펙트만 해놓고, 액티비티가 넘어가면 거기서 해당 버튼을 파란색으로 만드는게 좋을 것 같다.
+                --->그리고 그 액티비티 끝날때 해당 버튼 색 원래색으로 바꿔주기
+                * */
             }
         });
 

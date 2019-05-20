@@ -76,7 +76,11 @@ public class AdapterSAN extends RecyclerView.Adapter<AdapterSAN.MyViewHolder> {
           holder.tv_stationName.setText(mList.get(position).stationName);
 
 
-          if(mList.get(position).tracker==1) holder.tv_buspointer.setVisibility(View.VISIBLE);
+          if(mList.get(position).tracker==1){
+              holder.tv_buspointer.setVisibility(View.VISIBLE);
+          }else {
+              holder.tv_buspointer.setVisibility(View.INVISIBLE);
+          }
         //Click event
     }
 

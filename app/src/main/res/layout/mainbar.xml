@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--activity_main.xml 코드가 너무 길어져서 밑에 바를 아예 따로 빼서 xml로 만듬-->
+<LinearLayout
+    android:id="@+id/main_tap"
+    android:layout_width="match_parent"
+    android:layout_height="50dip"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="fill_parent"
+        android:background="#E7E7E0" />
+
+    <LinearLayout
+        android:id="@+id/main_tap_home"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground">
+
+        <ImageView
+            android:layout_width="29dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/homeicon" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="fill_parent"
+        android:background="#E7E7E0" />
+
+    <LinearLayout
+        android:id="@+id/main_tap_map"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_map" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="fill_parent"
+        android:background="#E7E7E0" />
+
+    <LinearLayout
+        android:id="@+id/main_tap_alarm"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:src="@drawable/aramicon"
+            android:layout_width="27dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="fill_parent"
+        android:background="#E7E7E0" />
+
+    <LinearLayout
+        android:id="@+id/main_tap_secretary"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:src="@drawable/listicon"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="fill_parent"
+        android:background="#E7E7E0" />
+
+    <LinearLayout
+        android:id="@+id/main_tap_setting"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:src="@drawable/settingicon"
+            android:layout_width="29dp"
+            android:layout_height="wrap_content" />
+
+
+
+    </LinearLayout>
+</LinearLayout>
