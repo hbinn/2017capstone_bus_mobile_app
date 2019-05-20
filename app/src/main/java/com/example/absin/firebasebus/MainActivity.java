@@ -1,11 +1,13 @@
 package com.example.absin.firebasebus;
 
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -87,8 +89,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
+        ImageView imgAlarm = (ImageView) findViewById(R.id.imgAlarm);
+        imgAlarm.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AlarmList.class);
+                startActivity(intent);
+            }
+        });
     }
 }
