@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         final LinearLayout main_map = (LinearLayout) findViewById(R.id.main_tap_map); //final은 내부 클래스에서 동작을 해야할때 써야된다는데 혹시 어떻게 될지 몰라서 써두었다.
         final LinearLayout main_home = (LinearLayout) findViewById(R.id.main_tap_home);
+        final LinearLayout main_setting= (LinearLayout) findViewById(R.id.main_tap_setting); //일단 장소표기 때문에 임시로 사용
 
         String sitename = "검색창 수정예정";
         textView.setText(Html.fromHtml("<u>" + sitename + "</u>"));
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //텍스트 부분 누르면 안 넘어가져서 넘어가게 따로 만듬.
+        //텍스트 부분 누르면 검색창으로 안 넘어가져서 넘어가게 따로 만듬.
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         main_map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                main_map.setBackgroundResource(R.color.tab_blue);
+
                 //여긴 클릭을 하면 아예 파란색으로 바꾸는 걸로 해봤는데 생각보다 촌스러워서 그림자 지는게 더 좋을것 같다.
 
                 /*문제: 이 버튼을 파란색으로 만들었으면
@@ -84,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
                 --->넘어갈때는 그림자 이펙트만 해놓고, 액티비티가 넘어가면 거기서 해당 버튼을 파란색으로 만드는게 좋을 것 같다.
                 --->그리고 그 액티비티 끝날때 해당 버튼 색 원래색으로 바꿔주기
                 * */
+
+                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(intent);
             }
         });
 

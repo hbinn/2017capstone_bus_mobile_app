@@ -78,8 +78,10 @@ public class AdapterSAN extends RecyclerView.Adapter<AdapterSAN.MyViewHolder> {
 
           if(mList.get(position).tracker==1){
               holder.tv_buspointer.setVisibility(View.VISIBLE);
+              holder.tv_stationName.setTextColor(Color.BLUE);
           }else {
               holder.tv_buspointer.setVisibility(View.INVISIBLE);
+              holder.tv_stationName.setTextColor(Color.BLACK);
           }
         //Click event
     }

@@ -79,7 +79,6 @@ public class search_barJ extends AppCompatActivity {
 
         et1.addTextChangedListener(new TextWatcher() {
 
-
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // 입력되는 텍스트에 변화가 있을 때
 
@@ -92,15 +91,11 @@ public class search_barJ extends AppCompatActivity {
 
 
             public void afterTextChanged(Editable arg0) {
-
                 // 입력이 끝났을 때
-
             }
 
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
                 // 입력하기 전에
-
             }
 
         });
@@ -185,6 +180,7 @@ public class search_barJ extends AppCompatActivity {
         //   @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+
 
             //어답터 연결
             MyAdapter adapter = new MyAdapter(getApplicationContext(), list);

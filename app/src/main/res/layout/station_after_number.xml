@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<!--버스를 검색한 후, 해당버스가 지나가는 정류장 목록이 나오는 화면
+            새로고침 버튼 만드는 중-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,6 +19,20 @@
 
 
 
+    <ImageView
+        android:scaleType="fitXY"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/ic_refresh"
+        android:id="@+id/refresh_btn"
+        android:layout_height="60dp"
+        android:layout_width="60dp"/>
 
 
-</LinearLayout>
+
+
+
+
+</RelativeLayout>

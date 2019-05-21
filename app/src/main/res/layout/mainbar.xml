@@ -2,6 +2,7 @@
 
 <!--activity_main.xml 코드가 너무 길어져서 밑에 바를 아예 따로 빼서 xml로 만듬-->
 <LinearLayout
+    android:background="#FFFFFF"
     android:id="@+id/main_tap"
     android:layout_width="match_parent"
     android:layout_height="50dip"
@@ -46,9 +47,9 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="25dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_map" />
+            android:src="@drawable/ic_googlemap" />
 
     </LinearLayout>
 

@@ -1,3 +1,7 @@
+
+<!--원래는 include를 해서 검색결과창과 검색창을 분리하려고 했는데
+    검색결과를 얻기 위해서는 검색결과창과 연결된 activity 를 연결해야해서 임시적으로 검색결과창을
+    아예 search_bar.xml에 집어넣었고, 따라서 검색결과와 연결된 코드를 실행하는 activity 도 search_bar에 만들어져있음 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@android:id/tabhost"

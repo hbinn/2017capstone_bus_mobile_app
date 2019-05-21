@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--station_after_number.xml에서 사용하는 recyclerview의 형태를 정해두는 xml이다-->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -24,8 +26,8 @@
 
 
         <ImageView
-            android:visibility="invisible"
-            android:layout_marginLeft= "7dp"
+
+            android:layout_marginLeft= "10dp"
             android:layout_marginTop="20dp"
             android:id = "@+id/tv_image"
             android:layout_width = "20dp"
@@ -35,11 +37,12 @@
             />
 
         <TextView
+            android:textColor="#060606"
             android:layout_marginTop="25dp"
-            android:paddingLeft="15dp"
+            android:paddingLeft="18dp"
             android:text="qk"
             android:id="@+id/tv_stationname2"
-            android:textSize="12dp"
+            android:textSize="15dp"
             android:layout_marginBottom="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

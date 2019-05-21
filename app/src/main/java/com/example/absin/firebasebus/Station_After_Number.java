@@ -4,9 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 
 import org.xmlpull.v1.XmlPullParser;
@@ -38,13 +42,16 @@ public class Station_After_Number extends AppCompatActivity {
     RecyclerView recyclerView;
     String routeId;
 
+    ImageView refreshBtn;
+
+    private Parcelable recyclerViewState;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.station_after_number);
 
-
+        refreshBtn = (ImageView) findViewById(R.id.refresh_btn);
         Intent intent = getIntent();
         routeId = intent.getStringExtra("RouteId");
 
@@ -55,8 +62,21 @@ public class Station_After_Number extends AppCompatActivity {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
-        MyAsyncTask3 myAsyncTask = new MyAsyncTask3();
+        MyAsyncTask3 myAsyncTask;
+        myAsyncTask = new MyAsyncTask3();
         myAsyncTask.execute();
+
+        //recyclerViewState = recyclerView.getLayoutManager().onSaveInstanceState();
+
+        refreshBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recyclerViewState = recyclerView.getLayoutManager().onSaveInstanceState();
+                MyAsyncTask3 myAsyncTask2 = new MyAsyncTask3();
+                myAsyncTask2.execute();
+                Toast.makeText(getApplicationContext(), "새로고침 되었습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -204,9 +224,11 @@ public class Station_After_Number extends AppCompatActivity {
                }
            }
 
+
             //어답터 연결
             AdapterSAN adapter = new AdapterSAN(getApplicationContext(), list);
             recyclerView.setAdapter(adapter);
+            recyclerView.getLayoutManager().onRestoreInstanceState(recyclerViewState);
         }
     }
 
