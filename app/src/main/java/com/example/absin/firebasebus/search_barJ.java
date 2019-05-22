@@ -33,11 +33,11 @@ public class search_barJ extends AppCompatActivity {
     EditText et1;
     String keyword;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_bar);
-
 
         TabHost tabHost = (TabHost)findViewById(R.id.th);
         tabHost.setup();

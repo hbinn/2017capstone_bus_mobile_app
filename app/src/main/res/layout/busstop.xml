@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BusStop_activity">
+    tools:context=".search_barJ">
 
     <!--리사이클러뷰-->
     <android.support.v7.widget.RecyclerView

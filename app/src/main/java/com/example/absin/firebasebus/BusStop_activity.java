@@ -111,4 +111,3 @@ public class BusStop_activity extends AppCompatActivity {
     }
 }
 
-

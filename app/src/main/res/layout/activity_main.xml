@@ -48,7 +48,7 @@
 
 
             <LinearLayout
-                android:layout_above="@+id/main_memo"
+                android:layout_above="@+id/main_tap_map"
                 android:id="@+id/list_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -64,12 +64,12 @@
 
             <LinearLayout
                 android:layout_above="@+id/boundary"
-                android:id="@+id/main_memo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/main_memo"
                     android:layout_width="300dp"
                     android:layout_height="60dp"
                     android:layout_weight="3"

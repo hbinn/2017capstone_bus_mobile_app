@@ -1,6 +1,5 @@
 package com.example.absin.firebasebus;
 
-import android.app.Activity;
 
 public class BusStop_item {
 
