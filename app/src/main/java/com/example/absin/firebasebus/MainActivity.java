@@ -1,23 +1,24 @@
-package com.example.absin.firebasebus;
 
-import android.content.Intent;
-import android.provider.ContactsContract;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.Html;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+        package com.example.absin.firebasebus;
 
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.io.BufferedReader;
-import java.io.IOException;
+        import android.content.Intent;
+        import android.provider.ContactsContract;
+        import android.support.v7.app.AppCompatActivity;
+        import android.os.Bundle;
+        import android.text.Html;
+        import android.view.MotionEvent;
+        import android.view.View;
+        import android.widget.ImageView;
+        import android.widget.LinearLayout;
+        import android.widget.TextView;
+        import android.widget.Toast;
+
+        import java.io.InputStreamReader;
+        import java.net.HttpURLConnection;
+        import java.net.URL;
+        import java.net.URLEncoder;
+        import java.io.BufferedReader;
+        import java.io.IOException;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         final LinearLayout main_map = (LinearLayout) findViewById(R.id.main_tap_map); //final은 내부 클래스에서 동작을 해야할때 써야된다는데 혹시 어떻게 될지 몰라서 써두었다.
         final LinearLayout main_home = (LinearLayout) findViewById(R.id.main_tap_home);
+        final LinearLayout main_memo = (LinearLayout) findViewById(R.id.main_tap_secretary); //메모장
 
         String sitename = "검색창 수정예정";
         textView.setText(Html.fromHtml("<u>" + sitename + "</u>"));
@@ -59,6 +61,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //메모 이동
+        main_memo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), memo.class);
+                startActivity(intent);
+            }
+        });
+
+        //메인 화면에 저장한 메모 뜨게 하기 (새로고침이 필요할듯)
+        TextFileManager mTextFileManager = new TextFileManager(MainActivity.this);
+        String memoData = mTextFileManager.load(); //저장한 데이터를 불러온다
+        TextView mMemo = (TextView) findViewById(R.id.main_memo);
+        mMemo.setText(memoData); //해당 데이터를 메인화면에 뜨게 한다
 
         main_home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,12 +106,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ImageView imgAlarm = (ImageView) findViewById(R.id.imgAlarm);
+      /* ImageView imgAlarm = (ImageView) findViewById(R.id.imgAlarm);
         imgAlarm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), AlarmList.class);
                 startActivity(intent);
             }
-        });
+        }); */
     }
 }

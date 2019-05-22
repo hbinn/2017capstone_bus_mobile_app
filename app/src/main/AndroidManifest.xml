@@ -21,21 +21,21 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".GetAlarmInfo"/>
+       <!-- <activity android:name=".GetAlarmInfo"/>
 
-        <activity android:name=".AlarmList"/>
+        <activity android:name=".AlarmList"/> -->
 
         <activity android:name=".search_barJ"
             android:label="검색창 액티비티"/>
 
-        <activity android:name=".Station_After_Number"
+        <activity android:name=".memo"
+            android:label="메모 액티비티"/>
+
+        <activity android:name=".BusStop_activity"/>
+
+       <!--<activity android:name=".Station_After_Number"
             android:label="버스검색 후 정류장"/>
-
-        <activity android:name=".BusStop_activity"
-            android:label="버스정류장 액티비티"/>
-
-        <!--<activity android:name=".BusStop_item"-->
-            <!--android:label="버스정류장 검색결과"/>-->
+            -->
 
 
         <meta-data
