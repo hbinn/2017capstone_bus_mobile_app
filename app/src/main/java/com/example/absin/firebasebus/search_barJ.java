@@ -25,13 +25,20 @@ import java.util.ArrayList;
 public class search_barJ extends AppCompatActivity {
 
     final String TAG = "search_barJ";
+    EditText et1, et2;
+    String keyword, keyword2;
+
     public String dataKey = "vgOxwLDnBL1K%2B0EV%2FG7Yi%2Bge%2BwfXMB66UwEnnmJEUuoej7Zg75Z85lE7wOcYZcysMUq5Sa2VGKzNsczJqzgg9A%3D%3D";
     private String requestUrl;
     ArrayList<Item> list = null;
     Item bus = null;
     RecyclerView recyclerView;
-    EditText et1;
-    String keyword;
+
+    public String dataKey2 = "vgOxwLDnBL1K%2B0EV%2FG7Yi%2Bge%2BwfXMB66UwEnnmJEUuoej7Zg75Z85lE7wOcYZcysMUq5Sa2VGKzNsczJqzgg9A%3D%3D";
+    private String requestUrl2;
+    ArrayList<BusStop_item> list2 = null;
+    BusStop_item busStop = null;
+    RecyclerView recyclerView2;
 
 
     @Override
@@ -41,7 +48,6 @@ public class search_barJ extends AppCompatActivity {
 
         TabHost tabHost = (TabHost)findViewById(R.id.th);
         tabHost.setup();
-
 
         TabHost.TabSpec tabSpecBus = tabHost.newTabSpec("BUS").setIndicator("버스");
         tabSpecBus.setContent(R.id.bus);
@@ -53,32 +59,27 @@ public class search_barJ extends AppCompatActivity {
 
         tabHost.setCurrentTab(0);
 
+
         et1 = (EditText) findViewById(R.id.et2);
-
-        Button btn2 = (Button) findViewById(R.id.btn2);
-
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BusStop_activity.class);
-                startActivity(intent);
-            }
-        });
-
+        et2 = (EditText) findViewById(R.id.et3);
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
 
+        recyclerView2 = (RecyclerView) findViewById(R.id.recycler_view2);
+        recyclerView2.setHasFixedSize(true);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(this);
+        layoutManager2.setOrientation(LinearLayoutManager.VERTICAL);
+
         recyclerView.setLayoutManager(layoutManager);
-
-
-
+        recyclerView2.setLayoutManager(layoutManager2);
 
         et1.addTextChangedListener(new TextWatcher() {
-
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // 입력되는 텍스트에 변화가 있을 때
@@ -99,6 +100,30 @@ public class search_barJ extends AppCompatActivity {
 
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+                // 입력하기 전에
+
+            }
+
+        });
+
+        et2.addTextChangedListener(new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // 입력되는 텍스트에 변화가 있을 때
+
+                recyclerView2.removeAllViewsInLayout();
+                keyword2 = et2.getText().toString();
+                //  recyclerView.setAdapter(adapter);
+                MyAsyncTask myAsyncTask2 = new MyAsyncTask();
+                myAsyncTask2.execute();
+            }
+
+
+            public void afterTextChanged(Editable arg0) {
+                // 입력이 끝났을 때
+
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 // 입력하기 전에
 
             }
@@ -189,6 +214,78 @@ public class search_barJ extends AppCompatActivity {
             //어답터 연결
             MyAdapter adapter = new MyAdapter(getApplicationContext(), list);
             recyclerView.setAdapter(adapter);
+        }
+    }
+
+    public class MyAsyncTask2 extends AsyncTask<String, Void, String> {
+
+        public String getKeyword() {
+            return keyword2;
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            requestUrl2 = "http://openapi.gbis.go.kr/ws/rest/busrouteservice/station?serviceKey=" + dataKey2 + "&routeId=" +getKeyword();
+            try {
+
+                boolean b_stationId =false;
+                boolean b_stationName = false;
+
+                URL url = new URL(requestUrl2);
+                InputStream is2 = url.openStream();
+                XmlPullParserFactory factory2 = XmlPullParserFactory.newInstance();
+                XmlPullParser parser2 = factory2.newPullParser();
+                parser2.setInput(new InputStreamReader(is2, "UTF-8")); //input stream으로부터 데이터 입력받기
+
+                String tag;
+                int eventType = parser2.getEventType();
+
+                while(eventType != XmlPullParser.END_DOCUMENT){
+                    switch (eventType){
+                        case XmlPullParser.START_DOCUMENT: //파싱 시작 단계
+                            list2 = new ArrayList<BusStop_item>();
+                            break;
+                        case XmlPullParser.END_DOCUMENT:
+                            break;
+                        case XmlPullParser.END_TAG:
+                            if(parser2.getName().equals("busRouteStationList") && busStop != null) {
+                                list2.add(busStop);
+                            }
+                            break;
+                        case XmlPullParser.START_TAG:
+                            if(parser2.getName().equals("busRouteStationList")){
+                                busStop= new BusStop_item();
+                            }
+
+                            if (parser2.getName().equals("stationId")) b_stationId = true;
+                            if (parser2.getName().equals("stationName")) b_stationName = true;
+                            break;
+                        case XmlPullParser.TEXT:
+                            if (b_stationName) {
+                                busStop.setStationName(parser2.getText());
+                                b_stationName = false;
+                            } else if(b_stationId) {
+                                busStop.setStationId(parser2.getText());
+                                b_stationId = false;
+                            }
+                            break;
+                    }
+                    eventType = parser2.next();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            //어답터 연결
+            MyAdapter2 adapter = new MyAdapter2(getApplicationContext(), list2);
+            recyclerView2.setAdapter(adapter);
         }
     }
 }
