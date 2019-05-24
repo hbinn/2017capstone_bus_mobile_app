@@ -3,16 +3,23 @@
     package="com.example.absin.firebasebus">
 
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <uses-library android:name="org.apache.http.legacy"
+            android:required="false"/>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,11 +38,14 @@
         <activity android:name=".memo"
             android:label="메모 액티비티"/>
 
+        <activity
+            android:name=".Station_After_Number"
+            android:label="버스검색 후 정류장" />
+
         <activity android:name=".BusStop_activity"/>
 
-       <!--<activity android:name=".Station_After_Number"
-            android:label="버스검색 후 정류장"/>
-            -->
+
+
 
 
         <meta-data
@@ -61,6 +71,22 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
+
+        <!--
+           The API key for Google Maps-based APIs is defined as a string resource.
+           (See the file "res/values/google_maps_api.xml").
+           Note that the API key is linked to the encryption key used to sign the APK.
+           You need a different API key for each encryption key, including the release key that is used to
+           sign the APK for publishing.
+           You can define the keys for the debug and release targets in src/debug/ and src/release/.
+      -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps"></activity>
 
     </application>
 

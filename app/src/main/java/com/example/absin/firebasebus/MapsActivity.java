@@ -1,6 +1,7 @@
 package com.example.absin.firebasebus;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Criteria;
@@ -24,6 +25,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private LinearLayout main_home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        main_home = (LinearLayout) findViewById(R.id.main_tap_home);
+
+        main_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -90,7 +102,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             LatLng geoPoint = new LatLng(latitude, longtitude); //위치 표시, 위치를 좀 못 잡는데 이건 내 핸드폰의 gps 문제 같음
             mMap.moveCamera(CameraUpdateFactory.newLatLng(geoPoint)); //지도 표시할때 멋진 카메라 무빙
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(geoPoint, 11)); //멋진 카메라 무빙을 가능하게 하는 애니메이션
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(geoPoint, 13)); //멋진 카메라 무빙을 가능하게 하는 애니메이션
 
 //            MarkerOptions marker = new MarkerOptions();
 //            marker.position(geoPoint);

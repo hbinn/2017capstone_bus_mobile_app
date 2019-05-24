@@ -1,11 +1,10 @@
 
-        package com.example.absin.firebasebus;
-
-        import android.content.Intent;
-        import android.provider.ContactsContract;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.text.Html;
+package com.example.absin.firebasebus;
+ import android.content.Intent;
+ import android.provider.ContactsContract;
+ import android.support.v7.app.AppCompatActivity;
+ import android.os.Bundle;
+ import android.text.Html;
         import android.view.MotionEvent;
         import android.view.View;
         import android.widget.ImageView;
@@ -103,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
                 --->넘어갈때는 그림자 이펙트만 해놓고, 액티비티가 넘어가면 거기서 해당 버튼을 파란색으로 만드는게 좋을 것 같다.
                 --->그리고 그 액티비티 끝날때 해당 버튼 색 원래색으로 바꿔주기
                 * */
+
+                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(intent);
             }
         });
 
