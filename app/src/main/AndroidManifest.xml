@@ -11,26 +11,29 @@
 
     <application
         android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_candidate4"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_candidate4"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
         <uses-library android:name="org.apache.http.legacy"
             android:required="false"/>
 
-        <activity android:name=".MainActivity">
+
+        <activity android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
        <!-- <activity android:name=".GetAlarmInfo"/>
 
         <activity android:name=".AlarmList"/> -->
+
+        <activity android:name=".MainActivity"
+            android:label="메인"/>
 
         <activity android:name=".search_barJ"
             android:label="검색창 액티비티"/>
@@ -42,7 +45,8 @@
             android:name=".Station_After_Number"
             android:label="버스검색 후 정류장" />
 
-        <activity android:name=".BusStop_activity"/>
+        <!--
+        <activity android:name=".BusStop_activity"/>-->
 
 
 
@@ -82,7 +86,7 @@
       -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="AIzaSyAf_iLsCz9K4bhs1naFMhXDZ20FFXorWQg" />
 
         <activity
             android:name=".MapsActivity"
