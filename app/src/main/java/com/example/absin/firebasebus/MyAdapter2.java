@@ -9,6 +9,31 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.ArrayList;
 
+class BusStop_item {
+
+    String stationId;
+    String stationName;
+
+
+    public String getStationId() {
+        return stationId;
+    }
+
+    public String getStationName() {
+        return stationName;
+    }
+
+
+
+    public void setStationId(String stationId) {
+        this.stationId = stationId;
+    }
+
+    public void setStationName(String stationName) {
+        this.stationName = stationName;
+    }
+}
+
 public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.MyViewHolder> {
 
     private ArrayList<BusStop_item> mList;

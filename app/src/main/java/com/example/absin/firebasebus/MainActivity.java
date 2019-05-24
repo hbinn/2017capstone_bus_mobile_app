@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-
         /*텍스트 뷰에 줄 넣으려고*/
         TextView textView = (TextView) findViewById(R.id.main_search);
         LinearLayout go_search = (LinearLayout) findViewById(R.id.go_to_search); //검색 화면으로 가기 위해서 이 화면을 클릭해야한다

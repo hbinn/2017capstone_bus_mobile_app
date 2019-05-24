@@ -3,36 +3,13 @@
     검색결과를 얻기 위해서는 검색결과창과 연결된 activity 를 연결해야해서 임시적으로 검색결과창을
     아예 search_bar.xml에 집어넣었고, 따라서 검색결과와 연결된 코드를 실행하는 activity 도 search_bar에 만들어져있음 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@android:id/tabhost"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".search_barJ"
     android:orientation="vertical">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="2dip"
-        android:layout_marginLeft="8dip"
-        android:layout_marginRight="8dip"
-        android:layout_marginTop="2dip"
-        android:gravity="center"
-        android:padding="10dip"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/et2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_search" />
-    </LinearLayout>
 
     <TabHost
         android:id="@+id/th"
@@ -44,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
+
 
             <TabWidget
                 android:id="@android:id/tabs"
@@ -62,6 +40,31 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="2dip"
+                        android:layout_marginLeft="8dip"
+                        android:layout_marginRight="8dip"
+                        android:layout_marginTop="2dip"
+                        android:gravity="center"
+                        android:padding="10dip"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/et2"
+                            android:layout_width="match_parent"
+                            android:hint="버스 입력"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_search" />
+                    </LinearLayout>
+
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recycler_view"
@@ -69,8 +72,6 @@
                         android:layout_height="match_parent"
                         android:scrollbars="vertical"
                         />
-
-
 
                 </LinearLayout>
 
@@ -80,11 +81,38 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/btn2"
-                        android:text="넘어가기"
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="2dip"
+                        android:layout_marginLeft="8dip"
+                        android:layout_marginRight="8dip"
+                        android:layout_marginTop="2dip"
+                        android:gravity="top"
+                        android:padding="10dip"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/et3"
+                            android:hint="정류장 입력"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_search" />
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_view2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scrollbars="vertical" />
+
 
                 </LinearLayout>
             </FrameLayout>
