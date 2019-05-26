@@ -4,7 +4,7 @@
 <LinearLayout android:background="#FFFFFF"
     android:id="@+id/main_tap"
     android:layout_width="match_parent"
-    android:layout_height="50dip"
+    android:layout_height="60dip"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -26,9 +26,17 @@
         android:background="?attr/selectableItemBackground">
 
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="wrap_content"
+            android:tint="@color/kyonggi_blue"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
             android:src="@drawable/homeicon" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:text="홈"
+            android:textSize="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
@@ -47,9 +55,17 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="wrap_content"
+            android:tint="@color/kyonggi_blue"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
             android:src="@drawable/ic_googlemap" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:text="지도"
+            android:textSize="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
@@ -69,9 +85,17 @@
         >
 
         <ImageView
+            android:tint="@color/kyonggi_blue"
             android:id="@+id/imgAlarm"
             android:src="@drawable/aramicon"
-            android:layout_width="23dp"
+            android:layout_width="30dp"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:text="알람"
+            android:textSize="10dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
@@ -91,9 +115,17 @@
         android:orientation="vertical" >
 
         <ImageView
+            android:tint="@color/kyonggi_blue"
             android:src="@drawable/listicon"
-            android:layout_width="25dp"
+            android:layout_width="30dp"
+            android:layout_height="20dp" />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:text="메모"
+            android:textSize="10dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
 
     </LinearLayout>
 
@@ -112,10 +144,17 @@
         android:orientation="vertical" >
 
         <ImageView
+            android:tint="@color/kyonggi_blue"
             android:src="@drawable/settingicon"
-            android:layout_width="25dp"
-            android:layout_height="wrap_content" />
+            android:layout_width="30dp"
+            android:layout_height="20dp" />
 
+        <TextView
+            android:layout_marginTop="5dp"
+            android:text="설정"
+            android:textSize="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
 
     </LinearLayout>
