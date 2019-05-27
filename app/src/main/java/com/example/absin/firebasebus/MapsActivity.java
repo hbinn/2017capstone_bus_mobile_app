@@ -82,6 +82,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     LatLng currentPosition;
 
     ProgressDialog pd;
+    ProgressDialog pd2;
 
     LocationRequest locationRequest = new LocationRequest()
             .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
@@ -112,7 +113,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pd2 = ProgressDialog.show(MapsActivity.this, "", "Google places 로딩중");
                 showPlaceInformation(currentPosition);
+                pd2.dismiss();
             }
         });
 
@@ -212,7 +215,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //지도의 초기위치를 서울로 이동
         setDefaultLocation();
 
-        mGoogleMap.getUiSettings().setZoomControlsEnabled(false);
+        mGoogleMap.getUiSettings().setZoomControlsEnabled(true);
         mGoogleMap.getUiSettings().setMyLocationButtonEnabled(true);
         mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(17));
         mGoogleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener(){
@@ -467,7 +470,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
         currentMarker = mGoogleMap.addMarker(markerOptions);
 
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(DEFAULT_LOCATION, 15);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(DEFAULT_LOCATION, 11);
         mGoogleMap.moveCamera(cameraUpdate);
 
     }
@@ -696,6 +699,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 previous_marker.addAll(hashSet);
 
 
+
             }
 
         });
@@ -711,6 +715,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     {
         mGoogleMap.clear();//지도 클리어
 
+
         if (previous_marker != null)
             previous_marker.clear();//지역정보 마커 클리어
 
@@ -723,7 +728,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .language("ko", "KR")
                 .build()
                 .execute();
+
+
     }
+
+
 
 
 }

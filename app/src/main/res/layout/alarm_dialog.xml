@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialog_lay"
+    android:orientation="vertical"
+    android:background="#E9E2E2">
+
+    <LinearLayout
+        android:id="@+id/time_lay"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="130dp">
+
+        <ImageView
+            android:tint="#84C7F2"
+            android:src="@drawable/aramicon"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:text="시간 나오는 창"
+            android:id="@+id/get_time"
+            android:textSize="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!--날씨-->
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="#FFFFFF"
+        android:layout_below="@+id/time_lay"
+        android:orientation="horizontal"
+        android:id="@+id/weather_lay"
+        android:layout_width="match_parent"
+        android:layout_height="130dp">
+
+        <ImageView
+            android:layout_marginRight="20dp"
+            android:scaleType="fitXY"
+            android:id="@+id/weather_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"/>
+
+        <TextView
+            android:id="@+id/weather_text"
+            android:textSize="40dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:text="날씨ddddddd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_above="@id/yes_no_layout"
+        android:padding="15dp"
+        android:background="#84C7F2"
+        android:orientation="horizontal"
+        android:id="@+id/bus_layout"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+        <TextView
+            android:layout_gravity="center"
+            android:paddingLeft="20dp"
+            android:layout_weight="1"
+            android:text="번호"
+            android:textSize="45dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/pTime1"
+                android:textSize="19dp"
+                android:text="1번 도착 정보"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/pTime2"
+                android:textSize="19dp"
+                android:text="2번 도착 정보"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#FFFFFF"
+        android:layout_marginTop="40dp"
+        android:id="@+id/yes_no_layout"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="140dp">
+
+        <LinearLayout
+            android:layout_marginRight="20dp"
+            android:id="@+id/get_bus"
+            android:orientation="vertical"
+            android:layout_width="90dp"
+            android:layout_height="110dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:gravity="center">
+
+            <com.github.zagum.switchicon.SwitchIconView
+                android:id="@+id/switchIconView1"
+                android:layout_width="wrap_content"
+                android:layout_height="90dp"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                app:si_animation_duration="500"
+                app:si_disabled_alpha=".5"
+                app:si_disabled_color="#6B6767"
+                app:si_enabled="false"
+                app:si_no_dash="true"
+                app:si_tint_color="#16A627"
+                app:srcCompat="@drawable/circle2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="탑승"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:id="@+id/not_get_bus"
+            android:orientation="vertical"
+            android:layout_width="90dp"
+            android:layout_height="110dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:gravity="center">
+
+            <com.github.zagum.switchicon.SwitchIconView
+                android:id="@+id/switchIconView2"
+                android:layout_width="wrap_content"
+                android:layout_height="90dp"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                app:si_animation_duration="500"
+                app:si_disabled_alpha=".5"
+                app:si_disabled_color="#6B6767"
+                app:si_enabled="false"
+                app:si_no_dash="true"
+                app:si_tint_color="#ff3c00"
+                app:srcCompat="@drawable/no2"/>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="보내기"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

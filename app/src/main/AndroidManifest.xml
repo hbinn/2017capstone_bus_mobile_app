@@ -8,6 +8,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
 
     <application
         android:allowBackup="false"
@@ -44,6 +47,19 @@
         <activity
             android:name=".Station_After_Number"
             android:label="버스검색 후 정류장" />
+
+        <activity android:name=".AlarmActivity"
+            android:label="알람창시작"/>
+
+        <activity android:name=".Alarm_busActivity"
+            android:label="알람에서 버스 찾으러"/>
+
+        <receiver android:name="AlarmReceiver" />
+        <receiver android:name=".Recevier2"/>
+        <activity android:name=".GetAlarmInfo"/>
+
+        <activity android:name=".DialogActivity"
+            android:noHistory="true"/>
 
         <!--
         <activity android:name=".BusStop_activity"/>-->

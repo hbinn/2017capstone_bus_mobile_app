@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         final LinearLayout main_map = (LinearLayout) findViewById(R.id.main_tap_map); //final은 내부 클래스에서 동작을 해야할때 써야된다는데 혹시 어떻게 될지 몰라서 써두었다.
         final LinearLayout main_home = (LinearLayout) findViewById(R.id.main_tap_home);
         final LinearLayout main_memo = (LinearLayout) findViewById(R.id.main_tap_secretary); //메모장
+        final LinearLayout main_alarm = (LinearLayout) findViewById(R.id.main_tap_alarm);
 
         String sitename = "검색창 수정예정";
         textView.setText(Html.fromHtml("<u>" + sitename + "</u>"));
@@ -74,23 +75,10 @@ public class MainActivity extends AppCompatActivity {
         TextView mMemo = (TextView) findViewById(R.id.main_memo);
         mMemo.setText(memoData); //해당 데이터를 메인화면에 뜨게 한다
 
-        main_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                 /*
-                android:clickable="true"
-                android:background="?attr/selectableItemBackground"
-                XML 코드에 이 부분 추가해서 클릭할때 그림자 이펙트가 들도록 했다.
-                일반 그림자가 아니라 색이 있는 그림자 퍼짐 효과를 원할떄는
-                https://soulduse.tistory.com/52 여기 보고 하면 될 것 같음!
-                 */
-            }
-        });
 
         main_map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                main_map.setBackgroundResource(R.color.tab_blue);
                 //여긴 클릭을 하면 아예 파란색으로 바꾸는 걸로 해봤는데 생각보다 촌스러워서 그림자 지는게 더 좋을것 같다.
 
                 /*문제: 이 버튼을 파란색으로 만들었으면
@@ -106,12 +94,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-      /* ImageView imgAlarm = (ImageView) findViewById(R.id.imgAlarm);
-        imgAlarm.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AlarmList.class);
+        main_alarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AlarmActivity.class);
                 startActivity(intent);
             }
-        }); */
+        });
+
+
     }
 }

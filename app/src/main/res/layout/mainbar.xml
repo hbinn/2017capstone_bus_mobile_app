@@ -46,6 +46,8 @@
         android:background="#E7E7E0" />
 
     <LinearLayout
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"
         android:id="@+id/main_tap_map"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -75,6 +77,8 @@
         android:background="#E7E7E0" />
 
     <LinearLayout
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"
         android:id="@+id/main_tap_alarm"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -106,6 +110,8 @@
         android:background="#E7E7E0" />
 
     <LinearLayout
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"
         android:id="@+id/main_tap_secretary"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -135,6 +141,8 @@
         android:background="#E7E7E0" />
 
     <LinearLayout
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"
         android:id="@+id/main_tap_setting"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
