@@ -297,6 +297,9 @@
             android:background="@color/grey0" />
 
         <LinearLayout
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="mOnPopupClick"
             android:id="@+id/go_to_searchBus"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -316,6 +319,7 @@
                 android:src="@drawable/ic_bus" />
 
             <TextView
+                android:id="@+id/input_bus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/searchboxon"
@@ -324,6 +328,9 @@
         </LinearLayout>
 
         <LinearLayout
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="mOnPopupClick2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="7"
@@ -342,6 +349,7 @@
                 android:src="@drawable/ic_busstop1" />
 
             <TextView
+                android:id="@+id/input_station"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/searchboxon"

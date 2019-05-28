@@ -60,6 +60,7 @@ public class Alarm_busActivity extends AppCompatActivity {
             }
 
 
+
             public void afterTextChanged(Editable arg0) {
                 // 입력이 끝났을 때
             }
@@ -71,6 +72,8 @@ public class Alarm_busActivity extends AppCompatActivity {
         });
 
     }
+
+
 
     public class MyAsyncTask extends AsyncTask<String, Void, String> {
 
@@ -153,7 +156,7 @@ public class Alarm_busActivity extends AppCompatActivity {
 
 
             //어답터 연결
-            MyAdapter adapter = new MyAdapter(getApplicationContext(), list);
+            Alarm_bus_Adapter adapter = new Alarm_bus_Adapter(Alarm_busActivity.this, getApplicationContext(), list);
             recyclerView.setAdapter(adapter);
         }
     }

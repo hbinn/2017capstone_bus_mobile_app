@@ -15,19 +15,23 @@ import java.util.Calendar;
 public class AlarmReceiver extends BroadcastReceiver {
 
     private AlarmManager am2;
-    String result;
+    String bus_routeId;
+    String bus_number;
+    String bus_stationId;
 
     @Override
     public void onReceive(Context context, Intent intent) {
         boolean[] week = intent.getBooleanArrayExtra("weekday");
+        bus_routeId = intent.getStringExtra("RouteId");
+        bus_number = intent.getStringExtra("BusNumber");
+        bus_stationId = intent.getStringExtra("StationId");
 
-//        MyAsyncTask_weather weather = new MyAsyncTask_weather(context, result);
-//        weather.execute();
-
-        int endTime_sub[] = intent.getIntArrayExtra("endTime");
 
         am2 = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent2 = new Intent(context, Recevier2.class);
+        intent2.putExtra("RouteId", bus_routeId);
+        intent2.putExtra("BusNumber", bus_number);
+        intent2.putExtra("StationId", bus_stationId);
         PendingIntent pIntent = PendingIntent.getBroadcast(context, 100, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Calendar cal = Calendar.getInstance();

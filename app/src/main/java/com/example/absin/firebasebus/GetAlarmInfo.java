@@ -41,8 +41,12 @@ public class GetAlarmInfo extends AppCompatActivity {
     TextView txtGapTime;
     private NumberPicker gapPicker;
     private AlarmManager am;
+    TextView input_bus;
+    TextView input_station;
 
-    LinearLayout go_to_search;
+    String bus_routeId;
+    String bus_number;
+    String bus_stationId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,27 +79,62 @@ public class GetAlarmInfo extends AppCompatActivity {
         gapPicker = (NumberPicker) findViewById(R.id.gapTime);
         getGapTime();
 
-        go_to_search = (LinearLayout) findViewById(R.id.go_to_searchBus);
-        go_to_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent3 = new Intent(getApplicationContext(), Alarm_busActivity.class);
-                startActivity(intent3);
+
+        input_bus = (TextView) findViewById(R.id.input_bus);
+        input_station = (TextView) findViewById(R.id.input_station);
+    }
+
+    public void mOnPopupClick(View v){
+        //데이터 담아서 팝업(액티비티) 호출, 버스 번호를 가져오기 위한 것
+        Intent intent = new Intent(this, Alarm_busActivity.class);
+        startActivityForResult(intent, 1);
+    }
+
+    public void mOnPopupClick2(View v){
+        //데이터 담아서 팝업(액티비티) 호출, 버스번호에 맞춰 경유 정류장을 가져오기 위한 것
+        Intent intent = new Intent(this, Alarm_stationActivity.class);
+        intent.putExtra("RouteId", bus_routeId);
+        startActivityForResult(intent, 2);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==1){
+            if(resultCode==RESULT_OK){
+                //데이터 받기
+                String result[] = data.getStringArrayExtra("RouteId");
+                input_bus.setText(result[0]);
+                bus_number = result[0];
+                bus_routeId = result[1];
             }
-        });
+        }
+
+        if(requestCode==2){
+            if(resultCode==RESULT_OK){
+                //데이터 받기
+                String result[] = data.getStringArrayExtra("StationId");
+                input_station.setText(result[0]);
+                bus_stationId= result[1];
+            }
+        }
 
     }
+
+
+
+
 
     public void onRegist(View v) {
         boolean[] week = { false, toggleSun.isChecked(), toggleMon.isChecked(), toggleTue.isChecked(), toggleWed.isChecked(),
                 toggleThu.isChecked(), toggleFri.isChecked(), toggleSat.isChecked() };
 
         //endTime의 시간을 넘기려고 만들었다
-        int endTime_sub[] = {endTime.get(Calendar.HOUR), endTime.get(Calendar.MINUTE)};
+
 
         Intent intent = new Intent(this, AlarmReceiver.class);
         intent.putExtra("weekday", week);
-        intent.putExtra("endTime", endTime_sub);
+        intent.putExtra("RouteId", bus_routeId);
+        intent.putExtra("BusNumber", bus_number);
+        intent.putExtra("StationId", bus_stationId);
         PendingIntent pIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Toast.makeText(getApplicationContext(), "새로운 알람이 저장되었습니다", Toast.LENGTH_SHORT).show();
