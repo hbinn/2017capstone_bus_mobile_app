@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         final LinearLayout main_map = (LinearLayout) findViewById(R.id.main_tap_map); //final은 내부 클래스에서 동작을 해야할때 써야된다는데 혹시 어떻게 될지 몰라서 써두었다.
         final LinearLayout main_home = (LinearLayout) findViewById(R.id.main_tap_home);
         final LinearLayout main_memo = (LinearLayout) findViewById(R.id.main_tap_secretary); //메모장
+        final LinearLayout main_setting = (LinearLayout) findViewById(R.id.main_tap_setting); //설정
         final LinearLayout main_alarm = (LinearLayout) findViewById(R.id.main_tap_alarm);
 
 //        String sitename = "검색창 수정예정";
@@ -65,6 +66,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), memo.class);
+                startActivity(intent);
+            }
+        });
+
+        main_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), setting.class);
                 startActivity(intent);
             }
         });
