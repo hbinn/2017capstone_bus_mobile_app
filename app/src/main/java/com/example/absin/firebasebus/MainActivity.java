@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
         final LinearLayout main_memo = (LinearLayout) findViewById(R.id.main_tap_secretary); //메모장
         final LinearLayout main_alarm = (LinearLayout) findViewById(R.id.main_tap_alarm);
 
-        String sitename = "검색창 수정예정";
-        textView.setText(Html.fromHtml("<u>" + sitename + "</u>"));
+//        String sitename = "검색창 수정예정";
+//        textView.setText(Html.fromHtml("<u>" + sitename + "</u>"));
 
 
         //검색창을 누르면 검색 화면으로 넘어가는 코드

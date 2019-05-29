@@ -10,11 +10,12 @@
     <color name="grey0">#DDDDDD</color>
     <color name="grey1">#777777</color>
     <color name="grey2">#4C4C4C</color>
+
+    <color name="baby_blue">#84C7F2</color>
     <color name="dadgerblue">#6495ED</color>
+    <color name="kyonggi_blue">#3752B3</color>
 
     <color name="seoul_red">#D71717</color>
-    <color name="kyonggi_blue">#3752B3</color>
-    <color name="inc_green">#13AB20</color>
-    <color name="baby_blue">#84C7F2</color>
 
+    <color name="inc_green">#13AB20</color>
 </resources>

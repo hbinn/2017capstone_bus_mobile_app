@@ -26,13 +26,7 @@ import java.util.Calendar;
  */
 
 public class GetAlarmInfo extends AppCompatActivity {
-    String[] days = new String[7];
-    Calendar startTime, endTime;
-    String gapTime;
-    String busNum;
-    String onStop;
-//    String offStop;
-
+    AlarmInfo alarmInfo = null;
 
     private ToggleButton toggleSun, toggleMon, toggleTue, toggleWed, toggleThu, toggleFri, toggleSat;
     TextView txtStartTime;
@@ -40,13 +34,10 @@ public class GetAlarmInfo extends AppCompatActivity {
     TimePickerDialog dialog;
     TextView txtGapTime;
     private NumberPicker gapPicker;
-    private AlarmManager am;
     TextView input_bus;
     TextView input_station;
 
-    String bus_routeId;
-    String bus_number;
-    String bus_stationId;
+    static int REQCODE = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,7 +52,11 @@ public class GetAlarmInfo extends AppCompatActivity {
             }
         });
 
-        am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        //alarmInfo = new AlarmInfo();
+        alarmInfo = new AlarmInfo(REQCODE, REQCODE+1);
+        REQCODE++;
+        alarmInfo.setAm((AlarmManager) getSystemService(Context.ALARM_SERVICE));
+
         toggleSun = (ToggleButton) findViewById(R.id.toggle_sun);
         toggleMon = (ToggleButton) findViewById(R.id.toggle_mon);
         toggleTue = (ToggleButton) findViewById(R.id.toggle_tue);
@@ -79,7 +74,6 @@ public class GetAlarmInfo extends AppCompatActivity {
         gapPicker = (NumberPicker) findViewById(R.id.gapTime);
         getGapTime();
 
-
         input_bus = (TextView) findViewById(R.id.input_bus);
         input_station = (TextView) findViewById(R.id.input_station);
     }
@@ -93,7 +87,7 @@ public class GetAlarmInfo extends AppCompatActivity {
     public void mOnPopupClick2(View v){
         //데이터 담아서 팝업(액티비티) 호출, 버스번호에 맞춰 경유 정류장을 가져오기 위한 것
         Intent intent = new Intent(this, Alarm_stationActivity.class);
-        intent.putExtra("RouteId", bus_routeId);
+        intent.putExtra("RouteId", alarmInfo.getBus_routeId());
         startActivityForResult(intent, 2);
     }
 
@@ -103,8 +97,8 @@ public class GetAlarmInfo extends AppCompatActivity {
                 //데이터 받기
                 String result[] = data.getStringArrayExtra("RouteId");
                 input_bus.setText(result[0]);
-                bus_number = result[0];
-                bus_routeId = result[1];
+                alarmInfo.setBus_number(result[0]);
+                alarmInfo.setBus_routeId(result[1]);
             }
         }
 
@@ -113,37 +107,58 @@ public class GetAlarmInfo extends AppCompatActivity {
                 //데이터 받기
                 String result[] = data.getStringArrayExtra("StationId");
                 input_station.setText(result[0]);
-                bus_stationId= result[1];
+                alarmInfo.setBus_station(result[0]);
+                alarmInfo.setBus_stationId(result[1]);
             }
         }
-
     }
 
+    public void makeAlarm(View v) {
+        onRegist();
+        Intent intent = new Intent(getApplicationContext(), AlarmActivity.class);
+        intent.putExtra("alarmInfo", alarmInfo);
+        setResult(RESULT_OK,intent);
+        finish();
+    }
 
-
-
-
-    public void onRegist(View v) {
+    public void onRegist() {
         boolean[] week = { false, toggleSun.isChecked(), toggleMon.isChecked(), toggleTue.isChecked(), toggleWed.isChecked(),
                 toggleThu.isChecked(), toggleFri.isChecked(), toggleSat.isChecked() };
 
-        //endTime의 시간을 넘기려고 만들었다
+        String days = "";
+        if (week[1] == true)
+            days = days + "일 ";
+        if (week[2] == true)
+            days = days + "월 ";
+        if (week[3] == true)
+            days = days + "화 ";
+        if (week[4] == true)
+            days = days + "수 ";
+        if (week[5] == true)
+            days = days + "목 ";
+        if (week[6] == true)
+            days = days + "금 ";
+        if (week[7] == true)
+            days = days + "토 ";
 
+        alarmInfo.setDays(days);
+
+        //endTime의 시간을 넘기려고 만들었다
 
         Intent intent = new Intent(this, AlarmReceiver.class);
         intent.putExtra("weekday", week);
-        intent.putExtra("RouteId", bus_routeId);
-        intent.putExtra("BusNumber", bus_number);
-        intent.putExtra("StationId", bus_stationId);
+        intent.putExtra("RouteId", alarmInfo.getBus_routeId());
+        intent.putExtra("BusNumber", alarmInfo.getBus_number());
+        intent.putExtra("StationId", alarmInfo.getBus_stationId());
+        intent.putExtra("REQCODE2", alarmInfo.getRequestCode2());
         PendingIntent pIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        //PendingIntent pIntent = PendingIntent.getBroadcast(this, alarmInfo.getRequestCode1(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Toast.makeText(getApplicationContext(), "새로운 알람이 저장되었습니다", Toast.LENGTH_SHORT).show();
 
         //long oneday = 24 * 60 * 60 * 1000;
         long interval = 1000 * 60* 60 *24; //24시간
-        am.setRepeating(AlarmManager.RTC_WAKEUP, startTime.getTimeInMillis(), interval, pIntent);
-
-
+        alarmInfo.getAm().setRepeating(AlarmManager.RTC_WAKEUP, alarmInfo.getStartTime().getTimeInMillis(), interval, pIntent);
     }
 
     public void onUnregist(View v)
@@ -151,20 +166,20 @@ public class GetAlarmInfo extends AppCompatActivity {
         Intent intent = new Intent(this, AlarmReceiver.class);
         PendingIntent pIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
 
-        am.cancel(pIntent);
+        //am.cancel(pIntent);
     }
 
     private void getTime(final TextView tx) {
         final Calendar cal = Calendar.getInstance();
-        startTime = Calendar.getInstance();
-        endTime = Calendar.getInstance();
+        final Calendar startTime = Calendar.getInstance();
+        final Calendar endTime = Calendar.getInstance();
 
         View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (gapPicker.getVisibility() == View.VISIBLE) {
                     gapPicker.setVisibility(View.GONE);
-                    txtGapTime.setText("");
+                    txtGapTime.setBackground(ContextCompat.getDrawable(GetAlarmInfo.this,R.drawable.searchboxoff));
                 }
 
                 dialog = new TimePickerDialog(GetAlarmInfo.this,
@@ -176,10 +191,12 @@ public class GetAlarmInfo extends AppCompatActivity {
                         if (tx.getId() == R.id.txtStartTime) {
                             startTime.set(Calendar.HOUR_OF_DAY, hour);
                             startTime.set(Calendar.MINUTE, min);
+                            alarmInfo.setStartTime(startTime);
                         }
                         else if (tx.getId() == R.id.txtEndTime) {
                             endTime.set(Calendar.HOUR_OF_DAY, hour);
                             endTime.set(Calendar.MINUTE, min);
+                            alarmInfo.setEndTime(endTime);
                         }
                     }
                 }, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true);
@@ -198,7 +215,6 @@ public class GetAlarmInfo extends AppCompatActivity {
             public void onClick(View view) {
                 if (gapPicker.getVisibility() == View.GONE) {
                     gapPicker.setVisibility(View.VISIBLE);
-
                     txtGapTime.setBackground(ContextCompat.getDrawable(GetAlarmInfo.this,R.drawable.searchboxon));
                 }
                 else {
@@ -217,6 +233,7 @@ public class GetAlarmInfo extends AppCompatActivity {
             @Override
             public void onValueChange(NumberPicker numberPicker, int i, int i1) {
                 txtGapTime.setText(numberPicker.getValue() + "");
+                alarmInfo.setGapTime(numberPicker.getValue());
             }
         });
 

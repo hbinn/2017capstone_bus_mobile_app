@@ -1,169 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--activity_main.xml 코드가 너무 길어져서 밑에 바를 아예 따로 빼서 xml로 만듬-->
-<LinearLayout android:background="#FFFFFF"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_tap"
     android:layout_width="match_parent"
     android:layout_height="60dip"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
-
-    <View
-        android:layout_width="1px"
-        android:layout_height="fill_parent"
-        android:background="#E7E7E0" />
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/main_tap_home"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:clickable="true"
-        android:background="?attr/selectableItemBackground">
-
-        <ImageView
-            android:tint="@color/kyonggi_blue"
-            android:layout_width="30dp"
-            android:layout_height="20dp"
-            android:src="@drawable/homeicon" />
-
-        <TextView
-            android:layout_marginTop="5dp"
-            android:text="홈"
-            android:textSize="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="1px"
-        android:layout_height="fill_parent"
-        android:background="#E7E7E0" />
-
-    <LinearLayout
-        android:clickable="true"
-        android:background="?attr/selectableItemBackground"
-        android:id="@+id/main_tap_map"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <ImageView
-            android:tint="@color/kyonggi_blue"
-            android:layout_width="30dp"
-            android:layout_height="20dp"
-            android:src="@drawable/ic_googlemap" />
-
-        <TextView
-            android:layout_marginTop="5dp"
-            android:text="지도"
-            android:textSize="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="1px"
-        android:layout_height="fill_parent"
-        android:background="#E7E7E0" />
-
-    <LinearLayout
-        android:clickable="true"
-        android:background="?attr/selectableItemBackground"
-        android:id="@+id/main_tap_alarm"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical"
-        >
+        android:background="#FFF5F5F5"
+        android:orientation="horizontal">
 
-        <ImageView
-            android:tint="@color/kyonggi_blue"
-            android:id="@+id/imgAlarm"
-            android:src="@drawable/aramicon"
-            android:layout_width="30dp"
-            android:layout_height="20dp" />
+        <LinearLayout
+            android:id="@+id/main_tap_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground">
 
-        <TextView
-            android:layout_marginTop="5dp"
-            android:text="알람"
-            android:textSize="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:tint="@color/grey1"
+                android:src="@drawable/homeicon" />
 
+            <TextView
+                android:layout_marginTop="5dp"
+                android:text="홈"
+                android:textSize="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!--<View-->
+        <!--android:layout_width="1px"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:background="#E7E7E0" />-->
+
+        <LinearLayout
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"
+            android:id="@+id/main_tap_map"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:tint="@color/grey1"
+                android:src="@drawable/ic_googlemap" />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:text="지도"
+                android:textSize="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!--<View-->
+        <!--android:layout_width="1px"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:background="#E7E7E0" />-->
+
+        <LinearLayout
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"
+            android:id="@+id/main_tap_alarm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:tint="@color/grey1"
+                android:id="@+id/imgAlarm"
+                android:src="@drawable/aramicon"
+                android:layout_width="30dp"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:text="알람"
+                android:textSize="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!--<View-->
+        <!--android:layout_width="1px"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:background="#E7E7E0" />-->
+
+        <LinearLayout
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"
+            android:id="@+id/main_tap_secretary"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:tint="@color/grey1"
+                android:src="@drawable/listicon"
+                android:layout_width="30dp"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_marginTop="5dp"
+                android:text="메모"
+                android:textSize="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!--<View-->
+        <!--android:layout_width="1px"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:background="#E7E7E0" />-->
+
+        <LinearLayout
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"
+            android:id="@+id/main_tap_setting"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:tint="@color/grey1"
+                android:src="@drawable/settingicon"
+                android:layout_width="30dp"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:text="설정"
+                android:textSize="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </LinearLayout>
-
-    <View
-        android:layout_width="1px"
-        android:layout_height="fill_parent"
-        android:background="#E7E7E0" />
-
-    <LinearLayout
-        android:clickable="true"
-        android:background="?attr/selectableItemBackground"
-        android:id="@+id/main_tap_secretary"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical" >
-
-        <ImageView
-            android:tint="@color/kyonggi_blue"
-            android:src="@drawable/listicon"
-            android:layout_width="30dp"
-            android:layout_height="20dp" />
-        <TextView
-            android:layout_marginTop="5dp"
-            android:text="메모"
-            android:textSize="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+    <!--<View-->
+    <!--android:layout_width="1px"-->
+    <!--android:layout_height="fill_parent"-->
+    <!--android:background="#E7E7E0" />-->
 
 
-    </LinearLayout>
-
-    <View
-        android:layout_width="1px"
-        android:layout_height="fill_parent"
-        android:background="#E7E7E0" />
-
-    <LinearLayout
-        android:clickable="true"
-        android:background="?attr/selectableItemBackground"
-        android:id="@+id/main_tap_setting"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical" >
-
-        <ImageView
-            android:tint="@color/kyonggi_blue"
-            android:src="@drawable/settingicon"
-            android:layout_width="30dp"
-            android:layout_height="20dp" />
-
-        <TextView
-            android:layout_marginTop="5dp"
-            android:text="설정"
-            android:textSize="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-
-    </LinearLayout>
 </LinearLayout>
