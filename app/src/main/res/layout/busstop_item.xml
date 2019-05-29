@@ -13,14 +13,11 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
             android:text="정류장이름 "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
             android:id="@+id/tv_stationName"
-            android:textSize="32dp"
-            android:textColor="@color/colorAccent"
+            android:textSize="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -29,11 +26,9 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
             android:text="정류장번호 "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
             android:id="@+id/tv_stationId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

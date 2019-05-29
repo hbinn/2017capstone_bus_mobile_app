@@ -1,6 +1,7 @@
 package com.example.absin.firebasebus;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -60,7 +61,7 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.MyViewHolder> {
         //binding
         holder.tv_stationId.setText(mList.get(position).stationId);
         holder.tv_stationName.setText(mList.get(position).stationName);
-
+        holder.tv_stationName.setTextColor(Color.rgb(19, 164, 225));
 
         //Click event
     }

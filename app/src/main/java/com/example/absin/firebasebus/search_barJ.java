@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class search_barJ extends AppCompatActivity {
 
     final String TAG = "search_barJ";
-    EditText et1, et2;
+    EditText et1, et4;
     String keyword, keyword2;
 
     public String dataKey = "vgOxwLDnBL1K%2B0EV%2FG7Yi%2Bge%2BwfXMB66UwEnnmJEUuoej7Zg75Z85lE7wOcYZcysMUq5Sa2VGKzNsczJqzgg9A%3D%3D";
@@ -39,6 +39,7 @@ public class search_barJ extends AppCompatActivity {
     ArrayList<BusStop_item> list2 = null;
     BusStop_item busStop = null;
     RecyclerView recyclerView2;
+
 
 
     @Override
@@ -61,7 +62,7 @@ public class search_barJ extends AppCompatActivity {
 
 
         et1 = (EditText) findViewById(R.id.et2);
-        et2 = (EditText) findViewById(R.id.et3);
+        et4 = (EditText) findViewById(R.id.et3);
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -93,22 +94,52 @@ public class search_barJ extends AppCompatActivity {
 
 
             public void afterTextChanged(Editable arg0) {
+
                 // 입력이 끝났을 때
+
             }
 
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
                 // 입력하기 전에
+
             }
 
         });
 
-        et2.addTextChangedListener(new TextWatcher() {
+        et4.addTextChangedListener(new TextWatcher() {
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // 입력되는 텍스트에 변화가 있을 때
 
                 recyclerView2.removeAllViewsInLayout();
-                keyword2 = et2.getText().toString();
+                keyword2 = et4.getText().toString();
+                //  recyclerView.setAdapter(adapter);
+                MyAsyncTask2 myAsyncTask2 = new MyAsyncTask2();
+                myAsyncTask2.execute();
+            }
+
+
+            public void afterTextChanged(Editable arg0) {
+
+                // 입력이 끝났을 때
+
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                // 입력하기 전에
+
+            }
+
+        });
+        /*et4.addTextChangedListener(new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // 입력되는 텍스트에 변화가 있을 때
+
+                recyclerView2.removeAllViewsInLayout();
+                keyword2 = et4.getText().toString();
                 //  recyclerView.setAdapter(adapter);
                 MyAsyncTask myAsyncTask2 = new MyAsyncTask();
                 myAsyncTask2.execute();
@@ -125,6 +156,7 @@ public class search_barJ extends AppCompatActivity {
             }
 
         });
+        */
 
     }
 
@@ -207,7 +239,6 @@ public class search_barJ extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-
             //어답터 연결
             MyAdapter adapter = new MyAdapter(getApplicationContext(), list);
             recyclerView.setAdapter(adapter);
@@ -223,35 +254,35 @@ public class search_barJ extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
 
-            requestUrl2 = "http://openapi.gbis.go.kr/ws/rest/busrouteservice/station?serviceKey=" + dataKey2 + "&routeId=" +getKeyword();
+            requestUrl2 = "http://openapi.gbis.go.kr/ws/rest/busstationservice?serviceKey=" + dataKey2 + "&keyword=" +getKeyword();
             try {
 
                 boolean b_stationId =false;
                 boolean b_stationName = false;
 
-                URL url = new URL(requestUrl2);
-                InputStream is2 = url.openStream();
+                URL url2 = new URL(requestUrl2);
+                InputStream is2 = url2.openStream();
                 XmlPullParserFactory factory2 = XmlPullParserFactory.newInstance();
                 XmlPullParser parser2 = factory2.newPullParser();
                 parser2.setInput(new InputStreamReader(is2, "UTF-8")); //input stream으로부터 데이터 입력받기
 
                 String tag;
-                int eventType = parser2.getEventType();
+                int eventType2 = parser2.getEventType();
 
-                while(eventType != XmlPullParser.END_DOCUMENT){
-                    switch (eventType){
+                while(eventType2 != XmlPullParser.END_DOCUMENT){
+                    switch (eventType2){
                         case XmlPullParser.START_DOCUMENT: //파싱 시작 단계
                             list2 = new ArrayList<BusStop_item>();
                             break;
                         case XmlPullParser.END_DOCUMENT:
                             break;
                         case XmlPullParser.END_TAG:
-                            if(parser2.getName().equals("busRouteStationList") && busStop != null) {
+                            if(parser2.getName().equals("busStationList") && busStop != null) {
                                 list2.add(busStop);
                             }
                             break;
                         case XmlPullParser.START_TAG:
-                            if(parser2.getName().equals("busRouteStationList")){
+                            if(parser2.getName().equals("busStationList")){
                                 busStop= new BusStop_item();
                             }
 
@@ -268,7 +299,7 @@ public class search_barJ extends AppCompatActivity {
                             }
                             break;
                     }
-                    eventType = parser2.next();
+                    eventType2 = parser2.next();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
