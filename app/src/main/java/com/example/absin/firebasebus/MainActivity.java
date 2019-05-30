@@ -7,9 +7,11 @@ package com.example.absin.firebasebus;
  import android.text.Html;
         import android.view.MotionEvent;
         import android.view.View;
-        import android.widget.ImageView;
+ import android.widget.ArrayAdapter;
+ import android.widget.ImageView;
         import android.widget.LinearLayout;
-        import android.widget.TextView;
+ import android.widget.ListView;
+ import android.widget.TextView;
         import android.widget.Toast;
 
         import java.io.InputStreamReader;
@@ -18,6 +20,7 @@ package com.example.absin.firebasebus;
         import java.net.URLEncoder;
         import java.io.BufferedReader;
         import java.io.IOException;
+ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +31,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //즐겨찾기 기능 추가(미완)
+        final ArrayList<String> names = new ArrayList<>();
+        ListView list = (ListView)findViewById(R.id.main_list);
+
+        Intent intent2 = getIntent();
+        String  name = intent2.getStringExtra("RouteName"); //인텐트로 버스이름 받아오기
+        names.add(name); //추가
+
+        //이부분에서 에러남
+        final ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, names);
+        list.setAdapter(adapter2);//리스트에 추가
+        adapter2.clear();
+        adapter2.addAll(names);
+
+        adapter2.notifyDataSetChanged();
 
         /*텍스트 뷰에 줄 넣으려고*/
         TextView textView = (TextView) findViewById(R.id.main_search);

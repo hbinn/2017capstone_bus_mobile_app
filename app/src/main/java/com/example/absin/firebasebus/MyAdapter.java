@@ -2,15 +2,24 @@ package com.example.absin.firebasebus;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
+
+
+import static android.content.Context.MODE_PRIVATE;
+
 
 /**
  * Created by absin on 2019-05-17.
@@ -43,7 +52,6 @@ class Item {
 
 
 
-
     public void setRouteName(String routeName) {
         this.routeName = routeName;
     }
@@ -60,12 +68,14 @@ class Item {
 
     public void setRouteId(String routeId) { this.routeId = routeId; }
 
+
 }
 
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private ArrayList<Item> mList;
+
     private LayoutInflater mInflate;
     private Context mContext;
 
@@ -73,6 +83,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         this.mList = itmes;
         this.mInflate = LayoutInflater.from(context);
         this.mContext = context;
+
+
     }
 
 
@@ -81,20 +93,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mInflate.inflate(R.layout.item, parent, false);
         MyViewHolder viewHolder = new MyViewHolder(view);
+
         return viewHolder;
+
     }
 
     @Override
     //뷰에 값이 채워질 3개를 여기서 하는 것
-    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         //binding
         holder.tv_routeName.setText(mList.get(position).routeName);
         String sub = mList.get(position).districtCd;
 
 
-            //holder.tv_routeName.setTextColor(Color.rgb(178, 204, 255));
-
-
+        //holder.tv_routeName.setTextColor(Color.rgb(178, 204, 255));
 
         String region = mList.get(position).regionName;
         String region2[] = region.split(",");
@@ -110,6 +122,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         //Click event
 
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,7 +132,30 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 context.startActivity(intent);
             }
         });
+
+        holder.star.setOnClickListener(new View.OnClickListener(){//즐겨찾기 토글버튼 클릭
+            @Override
+            public void onClick(View view) {
+                if(holder.star.isChecked()){//체크되면
+                    holder.star.setChecked(true);
+                    Toast.makeText(mContext, "즐겨찾기에 저장되었습니다.", Toast.LENGTH_LONG).show();
+                    Context context = view.getContext();
+                    Intent intent = new Intent(context,MainActivity.class);
+                    intent.putExtra("RouteName", mList.get(position).routeName);
+
+                }
+                else{//체크 사라지면
+                    holder.star.setChecked(false);
+                    Toast.makeText(mContext, "즐겨찾기에 삭제되었습니다.", Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
+
+
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -131,16 +167,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public TextView tv_routeName;
         public TextView tv_regionName;
         public TextView tv_routeTypeName;
+        public ToggleButton star;
 
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
+
             tv_routeName = itemView.findViewById(R.id.tv_routename);
             tv_regionName = itemView.findViewById(R.id.tv_regionname);
             tv_routeTypeName = itemView.findViewById(R.id.tv_routetypename);
+            star = (ToggleButton) itemView.findViewById(R.id.star);
+
+
+
 
         }
+
+
     }
 
 }

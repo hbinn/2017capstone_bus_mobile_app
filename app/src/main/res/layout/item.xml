@@ -5,47 +5,66 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
+
+
 
     <LinearLayout
         android:paddingLeft="16dp"
         android:layout_marginTop="10dp"
         android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dip">
+
 
         <TextView
             android:text="qk"
             android:id="@+id/tv_routename"
             android:textSize="25dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            />
 
-    <LinearLayout
-        android:paddingLeft="16dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:text="운행지역; "
-            android:id="@+id/tv_regionname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:paddingLeft="7dp"
-            android:text="노선유형; "
-            android:id="@+id/tv_routetypename"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"/>
+            android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/tv_regionname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="운행지역; " />
 
+            <TextView
+                android:id="@+id/tv_routetypename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:paddingLeft="7dp"
+                android:text="노선유형; " />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <ToggleButton
+            android:id="@+id/star"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="right"
+            android:background="@drawable/star_favorite_bg"
+            android:textOff=""
+            android:textOn=""
+            />
     </LinearLayout>
 
 
