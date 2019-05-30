@@ -12,31 +12,32 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+class bus_time{
+    String predictTime1;
+    String predictTime2;
 
-class bus_list_item { // 해당 정류장을 지나는 모든 버스 출력
+    public String getPredictTime1(){
+        return predictTime1;
+    }
+    public void setPredictTime1(String predictTime1){
+        this.predictTime1 = predictTime1;
+    }
 
-    String routeId; //버스 아이디
-    String routeName; //버스 번호
-    public String getrouteId() {
-        return routeId;
+    public String getPredictTime2(){
+        return predictTime2;
     }
-    public void setrouteId(String routeId){
-        this.routeId = routeId;
-    }
-    public String getrouteName() {
-        return routeName;
-    }
-    public void setrouteName(String routeName){
-        this.routeName = routeName;
+    public void setPredictTime2(String predictTime2){
+        this.predictTime2 = predictTime2;
     }
 }
-public class bus_list_adapter extends RecyclerView.Adapter<bus_list_adapter.MyViewHolder>{
-    private ArrayList<bus_list_item> mList;
+
+public class time_adapter extends RecyclerView.Adapter<time_adapter.MyViewHolder>{
+    private ArrayList<bus_time> mList;
     private LayoutInflater mInflate;
     private Context mContext;
     View view;
 
-    public bus_list_adapter(Context context, ArrayList<bus_list_item>items){
+    public time_adapter(Context context, ArrayList<bus_time>items){
         this.mList = items;
         this.mInflate = LayoutInflater.from(context);
         this.mContext = context;
@@ -50,7 +51,8 @@ public class bus_list_adapter extends RecyclerView.Adapter<bus_list_adapter.MyVi
     }
 
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-        holder.tv_routeName.setText(mList.get(position).routeName);
+        holder.tv_predict1.setText(mList.get(position).predictTime1);
+        holder.tv_predict2.setText(mList.get(position).predictTime2);
 
         //Click event
     }
@@ -60,12 +62,14 @@ public class bus_list_adapter extends RecyclerView.Adapter<bus_list_adapter.MyVi
 
     //ViewHolder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView tv_routeName;
+        public TextView tv_predict1;
+        public TextView tv_predict2;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            tv_routeName = itemView.findViewById(R.id.tv_routeName);
+            tv_predict1 = itemView.findViewById(R.id.tv_predict1);
+            tv_predict2 = itemView.findViewById(R.id.tv_predict2);
         }
     }
 }

@@ -72,7 +72,8 @@ class Item {
 }
 
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class
+MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private ArrayList<Item> mList;
 

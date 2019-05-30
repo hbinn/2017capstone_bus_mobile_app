@@ -71,6 +71,7 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.MyViewHolder> {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, bus_list.class);
                 intent.putExtra("stationId", mList.get(position).stationId);
+                intent.putExtra("stationName", mList.get(position).stationName);
                 context.startActivity(intent);
             }
         });
