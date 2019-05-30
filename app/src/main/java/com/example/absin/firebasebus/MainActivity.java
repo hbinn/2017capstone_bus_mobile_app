@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //즐겨찾기 기능 추가(미완)
+        /*
         final ArrayList<String> names = new ArrayList<>();
         ListView list = (ListView)findViewById(R.id.main_list);
 
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         adapter2.addAll(names);
 
         adapter2.notifyDataSetChanged();
-
+*/
         /*텍스트 뷰에 줄 넣으려고*/
         TextView textView = (TextView) findViewById(R.id.main_search);
         LinearLayout go_search = (LinearLayout) findViewById(R.id.go_to_search); //검색 화면으로 가기 위해서 이 화면을 클릭해야한다

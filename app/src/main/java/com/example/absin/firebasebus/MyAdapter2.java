@@ -1,6 +1,7 @@
 package com.example.absin.firebasebus;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -57,13 +58,23 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         //binding
         holder.tv_stationId.setText(mList.get(position).stationId);
         holder.tv_stationName.setText(mList.get(position).stationName);
         holder.tv_stationName.setTextColor(Color.rgb(19, 164, 225));
 
         //Click event
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, bus_list.class);
+                intent.putExtra("stationId", mList.get(position).stationId);
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
