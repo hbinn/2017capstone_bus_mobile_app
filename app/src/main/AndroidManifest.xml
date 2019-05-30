@@ -46,7 +46,6 @@
 
         <activity android:name=".memo"
             android:label = "메모 엑티비티">
-
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -67,6 +66,9 @@
 
         <activity android:name=".Alarm_stationActivity"
             android:label="알람에서 정류장 찾으러"/>
+
+        <activity android:name=".bus_list"
+            android:label="경유 버스들"/>
 
         <receiver android:name="AlarmReceiver" />
         <receiver android:name=".Recevier2"/>
