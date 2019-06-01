@@ -8,10 +8,12 @@ import java.util.Calendar;
 
 public class MyItem {
     //private boolean[] week = new boolean[8];
+    private String REQCODE1;
+    private String REQCODE2;
     private String days;
     private String startTime;
     private String endTime;
-    private int gapTime;
+    private String gapTime;
     private String bus_number;
     private String bus_station;
 
@@ -22,6 +24,23 @@ public class MyItem {
 //    public void setWeek(boolean[] week) {
 //        this.week = week;
 //    }
+
+
+    public String getREQCODE1() {
+        return REQCODE1;
+    }
+
+    public void setREQCODE1(String REQCODE1) {
+        this.REQCODE1 = REQCODE1;
+    }
+
+    public String getREQCODE2() {
+        return REQCODE2;
+    }
+
+    public void setREQCODE2(String REQCODE2) {
+        this.REQCODE2 = REQCODE2;
+    }
 
     public String getDays() { return days; }
 
@@ -43,11 +62,11 @@ public class MyItem {
         this.endTime = endTime;
     }
 
-    public int getGapTime() {
+    public String getGapTime() {
         return gapTime;
     }
 
-    public void setGapTime(int gapTime) {
+    public void setGapTime(String gapTime) {
         this.gapTime = gapTime;
     }
 
@@ -65,5 +84,13 @@ public class MyItem {
 
     public void setBus_station(String bus_station) {
         this.bus_station = bus_station;
+    }
+
+    public String toString() {
+        String str =  REQCODE1 + "," + REQCODE2 + "," + days + "," +
+                startTime + "," + endTime + "," + gapTime + "," +
+                bus_number + "," + bus_station;
+
+        return str;
     }
 }

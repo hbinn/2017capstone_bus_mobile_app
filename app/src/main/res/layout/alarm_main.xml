@@ -56,11 +56,32 @@
         </LinearLayout>
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/listView"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:dividerHeight="15dp"
-        android:divider="#FFF5F5F5">
-    </ListView>
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/imgDefault"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginVertical="90dp"
+                android:textSize="18dp"
+                android:text="등록된 알람이 없습니다" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:dividerHeight="15dp"
+            android:divider="#FFF5F5F5">
+        </ListView>
+    </FrameLayout>
+
 </LinearLayout>

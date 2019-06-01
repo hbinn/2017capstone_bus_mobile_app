@@ -121,8 +121,21 @@ public class DialogActivity extends AppCompatActivity {
         //리시버2를 인자로 걸로 캔슬을 하는게 맞았다. 2번째 알람매니저가 AlarmReceiver에 있기는 했는데 실제로 이 알람을 듣고있는 애는 Receiver2여서 얘를 취소시켜줘야 된다.
 
         Intent intent2 = new Intent(this, Recevier2.class);
-        final PendingIntent sender = PendingIntent.getBroadcast(this, 100, intent2, 0);
+
+//        String strEndTime = intent.getStringExtra("endTime");
+//        String[] arrEndTime = intent.getStringExtra("endTime").split(" ");
+//        Calendar endTime = Calendar.getInstance();
+//        endTime.set(Calendar.HOUR_OF_DAY, Integer.parseInt(arrEndTime[0]));
+//        endTime.set(Calendar.MINUTE, Integer.parseInt(arrEndTime[1]));
+
+        int REQCODE2 = intent.getIntExtra("REQCODE2", -1);
+        //final PendingIntent sender = PendingIntent.getBroadcast(this, 100, intent2, 0);
+        final PendingIntent sender = PendingIntent.getBroadcast(this, REQCODE2, intent2, 0);
         final AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+//        if (Calendar.getInstance().after(endTime)) {
+//            alarmManager.cancel(sender);
+//        }
 
         get_bus.setOnClickListener(new View.OnClickListener() {
             @Override

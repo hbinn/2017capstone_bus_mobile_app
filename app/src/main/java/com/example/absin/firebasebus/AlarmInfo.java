@@ -24,7 +24,7 @@ public class AlarmInfo implements Parcelable {
     String bus_stationId;
     String bus_station;
 
-    private AlarmManager am;
+    //private AlarmManager am;
 
     public AlarmInfo(int requestCode1, int requestCode2) {
         this.requestCode1 = requestCode1;
@@ -77,8 +77,8 @@ public class AlarmInfo implements Parcelable {
 
     public void setStartTime(Calendar startTime) {
         this.startTime = startTime;
-        this.strStartTime = this.startTime.get(Calendar.HOUR_OF_DAY) + "시 " +
-                this.startTime.get(Calendar.MINUTE) + "분";
+        this.strStartTime = this.startTime.get(Calendar.HOUR_OF_DAY) + " " +
+                this.startTime.get(Calendar.MINUTE);
     }
 
     public Calendar getEndTime() {
@@ -87,8 +87,8 @@ public class AlarmInfo implements Parcelable {
 
     public void setEndTime(Calendar endTime) {
         this.endTime = endTime;
-        this.strEndTime = this.endTime.get(Calendar.HOUR_OF_DAY) + "시" +
-                this.endTime.get(Calendar.MINUTE) + "분";
+        this.strEndTime = this.endTime.get(Calendar.HOUR_OF_DAY) + " " +
+                this.endTime.get(Calendar.MINUTE);
     }
 
     public String getStrStartTime() {
@@ -147,13 +147,13 @@ public class AlarmInfo implements Parcelable {
         this.bus_station = bus_station;
     }
 
-    public AlarmManager getAm() {
-        return am;
-    }
-
-    public void setAm(AlarmManager am) {
-        this.am = am;
-    }
+//    public AlarmManager getAm() {
+//        return am;
+//    }
+//
+//    public void setAm(AlarmManager am) {
+//        this.am = am;
+//    }
 
     @Override
     public int describeContents() {

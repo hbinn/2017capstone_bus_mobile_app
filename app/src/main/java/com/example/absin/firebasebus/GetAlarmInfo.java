@@ -26,6 +26,7 @@ import java.util.Calendar;
  */
 
 public class GetAlarmInfo extends AppCompatActivity {
+    AlarmManager am;
     AlarmInfo alarmInfo = null;
 
     private ToggleButton toggleSun, toggleMon, toggleTue, toggleWed, toggleThu, toggleFri, toggleSat;
@@ -36,8 +37,6 @@ public class GetAlarmInfo extends AppCompatActivity {
     private NumberPicker gapPicker;
     TextView input_bus;
     TextView input_station;
-
-    static int REQCODE = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,9 +52,10 @@ public class GetAlarmInfo extends AppCompatActivity {
         });
 
         //alarmInfo = new AlarmInfo();
-        alarmInfo = new AlarmInfo(REQCODE, REQCODE+1);
-        REQCODE++;
-        alarmInfo.setAm((AlarmManager) getSystemService(Context.ALARM_SERVICE));
+        alarmInfo = new AlarmInfo((int)System.currentTimeMillis(),
+                        (int)System.currentTimeMillis()+1);
+        //alarmInfo.setAm((AlarmManager) getSystemService(Context.ALARM_SERVICE));
+        am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
         toggleSun = (ToggleButton) findViewById(R.id.toggle_sun);
         toggleMon = (ToggleButton) findViewById(R.id.toggle_mon);
@@ -127,19 +127,19 @@ public class GetAlarmInfo extends AppCompatActivity {
 
         String days = "";
         if (week[1] == true)
-            days = days + "일 ";
+            days = days + "일  ";
         if (week[2] == true)
-            days = days + "월 ";
+            days = days + "월  ";
         if (week[3] == true)
-            days = days + "화 ";
+            days = days + "화  ";
         if (week[4] == true)
-            days = days + "수 ";
+            days = days + "수  ";
         if (week[5] == true)
-            days = days + "목 ";
+            days = days + "목  ";
         if (week[6] == true)
-            days = days + "금 ";
+            days = days + "금  ";
         if (week[7] == true)
-            days = days + "토 ";
+            days = days + "토  ";
 
         alarmInfo.setDays(days);
 
@@ -147,27 +147,30 @@ public class GetAlarmInfo extends AppCompatActivity {
 
         Intent intent = new Intent(this, AlarmReceiver.class);
         intent.putExtra("weekday", week);
+        intent.putExtra("gapTime", alarmInfo.getGapTime());
+        intent.putExtra("endTime", alarmInfo.getEndTime());
         intent.putExtra("RouteId", alarmInfo.getBus_routeId());
         intent.putExtra("BusNumber", alarmInfo.getBus_number());
         intent.putExtra("StationId", alarmInfo.getBus_stationId());
         intent.putExtra("REQCODE2", alarmInfo.getRequestCode2());
-        PendingIntent pIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        //PendingIntent pIntent = PendingIntent.getBroadcast(this, alarmInfo.getRequestCode1(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        //PendingIntent pIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pIntent = PendingIntent.getBroadcast(this, alarmInfo.getRequestCode1(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Toast.makeText(getApplicationContext(), "새로운 알람이 저장되었습니다", Toast.LENGTH_SHORT).show();
 
         //long oneday = 24 * 60 * 60 * 1000;
         long interval = 1000 * 60* 60 *24; //24시간
-        alarmInfo.getAm().setRepeating(AlarmManager.RTC_WAKEUP, alarmInfo.getStartTime().getTimeInMillis(), interval, pIntent);
+        //alarmInfo.getAm().setRepeating(AlarmManager.RTC_WAKEUP, alarmInfo.getStartTime().getTimeInMillis(), interval, pIntent);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, alarmInfo.getStartTime().getTimeInMillis(), interval, pIntent);
     }
 
-    public void onUnregist(View v)
-    {
-        Intent intent = new Intent(this, AlarmReceiver.class);
-        PendingIntent pIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-
-        //am.cancel(pIntent);
-    }
+//    public void onUnregist(View v)
+//    {
+//        Intent intent = new Intent(this, AlarmReceiver.class);
+//        PendingIntent pIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+//
+//        //am.cancel(pIntent);
+//    }
 
     private void getTime(final TextView tx) {
         final Calendar cal = Calendar.getInstance();

@@ -8,22 +8,40 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:weightSum="5"
         android:padding="20dp"
         android:layout_marginHorizontal="17dp"
         android:background="#FFFFFF"
         android:orientation="vertical">
 
-        <ImageView
+        <Button
+            android:id="@+id/btnDelete"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_delete"
+            android:background="@drawable/delete_clicker"
             android:visibility="gone"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="center_vertical"
+            android:gravity="bottom"
+            android:layout_marginVertical="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtDays"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="요일"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom"
             android:layout_marginVertical="5dp"
             android:orientation="horizontal">
 
@@ -39,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:paddingHorizontal="20dp"
+                android:paddingHorizontal="10dp"
                 android:textSize="18dp"
                 android:text="~"/>
 
@@ -50,24 +68,6 @@
                 android:gravity="center_vertical"
                 android:textSize="15dp"
                 android:text="종료시간"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:layout_marginVertical="5dp"
-            android:weightSum="3"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtDays"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:textSize="15dp"
-                android:text="요일"/>
 
             <Switch
                 android:id="@+id/swOnOff"
@@ -80,10 +80,10 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
+            android:layout_height="0dp"
+            android:gravity="bottom"
             android:layout_marginVertical="5dp"
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:orientation="horizontal">
 
             <TextView
@@ -95,22 +95,38 @@
                 android:text="버스번호"/>
 
             <TextView
+                android:id="@+id/txtGapTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="도착 x 분 전"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <TextView
                 android:id="@+id/txtOnStop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
+                android:gravity="center_vertical"
+                android:paddingRight="35dp"
+                android:textSize="16dp"
                 android:textColor="@color/kyonggi_blue"
                 android:text="승차정거장"/>
+
+            <TextView
+                android:id="@+id/txtOffStop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textSize="16dp"
+                android:text="하차정거장"/>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/txtOffStop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_marginVertical="5dp"
-            android:layout_weight="2"
-            android:textSize="18dp"
-            android:text="하차정거장"/>
     </LinearLayout>
 </LinearLayout>
