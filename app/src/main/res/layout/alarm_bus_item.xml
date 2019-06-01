@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--search_bar에 들어있는 recyclerview이 어떤 형태를 가질지 디자인을 해 둔 xml이다-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:paddingLeft="16dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dip">
+
+        <TextView
+            android:text="qk"
+            android:id="@+id/tv_routename"
+            android:textSize="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingLeft="16dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="운행지역; "
+            android:id="@+id/tv_regionname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:paddingLeft="7dp"
+            android:text="노선유형; "
+            android:id="@+id/tv_routetypename"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"/>
+
+
+    </LinearLayout>
+
+
+
+    <!--구분선-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_centerInParent="true"
+        android:background="#e3e3e3"/>
+
+
+</LinearLayout>

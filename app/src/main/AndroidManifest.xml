@@ -44,6 +44,16 @@
         <activity android:name=".setting"
             android:label = "설정"/>
 
+
+
+        <activity android:name=".setting_notificationActivity">
+            <intent-filter>
+                <action android:name="OPEN_ACTIVITY_1" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
         <activity android:name=".memo"
             android:label = "메모 엑티비티">
             <meta-data
@@ -51,6 +61,7 @@
                 android:value=".MainActivity" />
 
         </activity>
+
 
 
 
@@ -86,10 +97,10 @@
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_push"/>
+            android:resource="@drawable/ic_candidate4"/>
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorAccent"/>
+            android:resource="@color/kyonggi_blue"/>
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />

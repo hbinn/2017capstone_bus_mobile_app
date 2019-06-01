@@ -24,29 +24,23 @@ import java.util.List;
 
 
 public class setting  extends AppCompatActivity {
-    static final String[] LIST_MENU = {"공지사항", "이용약관", "버전정보","고객센터","개인정보 동의", "도움말","오픈소스 라이센스"} ;
+
+    LinearLayout notification;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState) ;
         setContentView(R.layout.setting) ;
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, LIST_MENU) ;
+        notification = (LinearLayout) findViewById(R.id.setting_notification);
 
-        ListView listview = (ListView) findViewById(R.id.listview1) ;
-        listview.setAdapter(adapter) ;
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
+        notification.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView parent, View v, int position, long id) {
-
-                String strText = (String) parent.getItemAtPosition(position) ;
-
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), setting_notificationActivity.class);
+                startActivity(intent);
             }
-        }) ;
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("설정");
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF87CEFA)); // ActionBar의 배경색 변경
+        });
+
 
     }
 }

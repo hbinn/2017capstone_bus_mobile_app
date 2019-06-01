@@ -12,6 +12,9 @@ import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -22,6 +25,8 @@ import com.google.firebase.messaging.RemoteMessage;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
 
+
+
     /**
      * Called when message is received.
      *
@@ -30,7 +35,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     // [START receive_message]
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         Log.d(TAG, "From: " + remoteMessage.getFrom());
@@ -47,6 +51,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             }
 
         }
+
 
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
@@ -75,7 +80,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     //노티 누르고 실행되는 화면을 여기에 바꾸면 된다.
     private void sendNotification(String messageBody) {
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, setting_notificationActivity.class);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
@@ -86,7 +91,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
-                        .setSmallIcon(R.drawable.ic_push)
+                        .setSmallIcon(R.drawable.ic_candidate4)
                         .setContentTitle("FCM Message")
                         .setContentText(messageBody)
                         .setAutoCancel(true)

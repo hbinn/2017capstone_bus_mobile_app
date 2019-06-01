@@ -53,7 +53,7 @@ public class Alarm_bus_Adapter extends RecyclerView.Adapter<Alarm_bus_Adapter.My
 
 
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflate.inflate(R.layout.item, parent, false);
+        View view = mInflate.inflate(R.layout.alarm_bus_item, parent, false);
         MyViewHolder viewHolder = new MyViewHolder(view, mActivity);
         return viewHolder;
     }
