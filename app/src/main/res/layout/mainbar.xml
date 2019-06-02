@@ -135,6 +135,7 @@
         <!--android:background="#E7E7E0" />-->
 
         <LinearLayout
+            android:onClick="settingClick"
             android:clickable="true"
             android:background="?attr/selectableItemBackground"
             android:id="@+id/main_tap_setting"

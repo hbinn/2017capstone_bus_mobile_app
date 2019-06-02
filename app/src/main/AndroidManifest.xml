@@ -44,14 +44,15 @@
         <activity android:name=".setting"
             android:label = "설정"/>
 
+        <activity android:name=".setting_notificationActivity"
+            android:label="공지사항"/>
 
+        <activity android:name=".setting_developerActivity"
+            android:label="개발자 정보"/>
 
-        <activity android:name=".setting_notificationActivity">
-            <intent-filter>
-                <action android:name="OPEN_ACTIVITY_1" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".setting_apiActivity"
+            android:label="api정보"/>
+
 
 
         <activity android:name=".memo"

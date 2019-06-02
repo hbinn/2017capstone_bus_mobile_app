@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:background="@drawable/shadow"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="340dp"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:layout_marginLeft="6dp"
+            android:src="@drawable/rabbit"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:paddingLeft="30dp"
+            android:text="권혜빈
+hb_kk@naver.com"
+            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@drawable/shadow"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="340dp"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:layout_marginLeft="6dp"
+            android:src="@drawable/dog"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:paddingLeft="30dp"
+            android:text="김세희
+Wintersnow3@naver.com"
+            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@drawable/shadow"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="340dp"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:layout_marginLeft="6dp"
+            android:src="@drawable/penguin"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:paddingLeft="30dp"
+            android:text="이승민
+absinthe4902@naver.com"
+            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@drawable/shadow"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="340dp"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:layout_marginLeft="6dp"
+            android:src="@drawable/cat"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:paddingLeft="30dp"
+            android:text="홍준희
+Junnyh196@gmail.com"
+            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <TextView
+    android:textStyle="bold"
+    android:layout_marginTop="30dp"
+    android:textColor="@color/kyonggi_blue"
+    android:textSize="10dp"
+    android:text="*팀 '이방인'의 2019 졸업 프로젝트 입니다*"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+    <TextView
+        android:textStyle="bold"
+        android:textColor="@color/kyonggi_blue"
+        android:textSize="10dp"
+        android:text="https://github.com/absinthe4902/firebaseBus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

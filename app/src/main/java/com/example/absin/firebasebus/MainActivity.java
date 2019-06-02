@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         final LinearLayout main_map = (LinearLayout) findViewById(R.id.main_tap_map); //final은 내부 클래스에서 동작을 해야할때 써야된다는데 혹시 어떻게 될지 몰라서 써두었다.
         final LinearLayout main_home = (LinearLayout) findViewById(R.id.main_tap_home);
         final LinearLayout main_memo = (LinearLayout) findViewById(R.id.main_tap_secretary); //메모장
-        final LinearLayout main_setting = (LinearLayout) findViewById(R.id.main_tap_setting); //설정
         final LinearLayout main_alarm = (LinearLayout) findViewById(R.id.main_tap_alarm);
 
 //        String sitename = "검색창 수정예정";
@@ -89,13 +88,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        main_setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), setting.class);
-                startActivity(intent);
-            }
-        });
+
 
         //메인 화면에 저장한 메모 뜨게 하기 (새로고침이 필요할듯)
         TextFileManager mTextFileManager = new TextFileManager(MainActivity.this);
@@ -107,15 +100,6 @@ public class MainActivity extends AppCompatActivity {
         main_map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //여긴 클릭을 하면 아예 파란색으로 바꾸는 걸로 해봤는데 생각보다 촌스러워서 그림자 지는게 더 좋을것 같다.
-
-                /*문제: 이 버튼을 파란색으로 만들었으면
-                1) 다른 버튼을 파란색이 아니게 바꿔주거나
-                2) (메인바가 표기되는 화면으로 넘어갈경우) 거기서 파란버튼으로 바꿔주는 걸 호출해야함
-                -->안그러면 이미 예전에 눌렀던 버튼 모두가 파란색으로 되어있음
-                --->넘어갈때는 그림자 이펙트만 해놓고, 액티비티가 넘어가면 거기서 해당 버튼을 파란색으로 만드는게 좋을 것 같다.
-                --->그리고 그 액티비티 끝날때 해당 버튼 색 원래색으로 바꿔주기
-                * */
 
                 Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
                 startActivity(intent);
@@ -131,5 +115,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void settingClick(View v) {
+        Intent intent = new Intent(getApplicationContext(), setting.class);
+        startActivity(intent);
     }
 }
