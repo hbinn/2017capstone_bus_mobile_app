@@ -130,6 +130,7 @@ MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, Station_After_Number.class);
                 intent.putExtra("RouteId", mList.get(position).routeId);
+                intent.putExtra("RouteName", mList.get(position).routeName);
                 context.startActivity(intent);
             }
         });

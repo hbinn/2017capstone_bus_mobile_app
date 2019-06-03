@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
+import static android.content.Context.ALARM_SERVICE;
+
 /**
  * Created by absin on 2019-05-26.
  */
@@ -41,16 +43,15 @@ public class Recevier2 extends BroadcastReceiver  {
             e.printStackTrace();
         }
 
+
+
         String[] arrResult = result.split(",");
         int pTime1 = Integer.parseInt(arrResult[0]);
         int pTime2 = Integer.parseInt(arrResult[1]);
 
-        if(result.equals("null,null")){
-            Toast.makeText(context.getApplicationContext(), "현재 운행중인 버스 정보 없음", Toast.LENGTH_SHORT).show();
-        }else if(result.contains(",null")) {
-            Toast.makeText(context.getApplicationContext(), "현재 운행중인 버스 정보 없음", Toast.LENGTH_SHORT).show();
-        }else if ((pTime1 > gapTime -4 && pTime1 < gapTime +4)
+       if ((pTime1 > gapTime -4 && pTime1 < gapTime +4)
                     || (pTime2 > gapTime -4 && pTime2 < gapTime +4)){
+
             Intent intent_dialog = new Intent(context.getApplicationContext(), DialogActivity.class);
             //intent_dialog.putExtra("endTime", endTime);
             intent_dialog.putExtra("predict", result);

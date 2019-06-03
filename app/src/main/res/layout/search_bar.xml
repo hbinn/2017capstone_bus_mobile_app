@@ -25,7 +25,8 @@
             <TabWidget
                 android:id="@android:id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
             </TabWidget>
 
             <FrameLayout
@@ -74,6 +75,21 @@
                         android:layout_height="match_parent"
                         android:scrollbars="vertical"
                         />
+
+                    <LinearLayout
+                        android:id="@+id/imgDefault"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="invisible">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_marginVertical="90dp"
+                            android:textSize="18dp"
+                            android:text="검색결과가 없습니다." />
+                    </LinearLayout>
 
                 </LinearLayout>
 

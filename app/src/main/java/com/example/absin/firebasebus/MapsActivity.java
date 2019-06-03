@@ -28,6 +28,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -113,11 +114,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pd2 = ProgressDialog.show(MapsActivity.this, "", "Google places 로딩중");
+                Toast.makeText(getApplicationContext(), "로딩까지 잠시만 기다려주세요", Toast.LENGTH_SHORT).show();
                 showPlaceInformation(currentPosition);
-                pd2.dismiss();
             }
         });
+
 
 
         pd = ProgressDialog.show(MapsActivity.this, "", "위치정보 수집중");
@@ -136,6 +137,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
 
 
     }
@@ -262,7 +264,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             }
         });
+
+        mGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                Intent intent = new Intent(getApplicationContext(), search_barJ.class);
+                intent.putExtra("Checksum", 2);
+                startActivity(intent);
+            }
+        });
+
+
     }
+
 
 
     @Override
@@ -678,7 +692,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     markerOptions.title(place.getName());
 
                     markerOptions.snippet(markerSnippet);
-                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(2.0f));
+                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
 
                     Marker item = mGoogleMap.addMarker(markerOptions);
 

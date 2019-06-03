@@ -19,6 +19,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.zagum.switchicon.SwitchIconView;
 
@@ -85,9 +86,21 @@ public class DialogActivity extends AppCompatActivity {
         String busNumber = intent.getStringExtra("BusNumber");
 
         bus_number.setText(busNumber);
-        pTime1.setText("1번 버스: "+ result2[0] +"분 전");
-        pTime2.setText("2번 버스: " +result2[1]+"분 전");
-        //알람이 오면 소리 나게 하는 부분
+
+        if(result2[0].equals("-1") && result2[1].equals("-1")){
+            pTime1.setText("1번 버스: "+"도착정보없음");
+            pTime2.setText("2번 버스: " +"도착정보없음");
+        }else if(result2[1].equals("-1")){
+            pTime1.setText("1번 버스: "+ result2[0] +"분 전");
+            pTime2.setText("2번 버스: " +"도착정보없음");
+        }else if(result2[0].equals("-1")){
+            pTime1.setText("1번 버스: "+"도착정보없음");
+            pTime2.setText("2번 버스: " +result2[1]+"분 전");
+        }else {
+            pTime1.setText("1번 버스: " + result2[0] + "분 전");
+            pTime2.setText("2번 버스: " + result2[1] + "분 전");
+        }
+        //알람이 오면 소리 나게 하는 부분ㅑ
         Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION); //가내수공업 해서 무슨 소리 나나 해보기
         MediaPlayer mp = MediaPlayer.create(getApplicationContext(), notification);
         mp.start();
@@ -192,37 +205,30 @@ public class DialogActivity extends AppCompatActivity {
             Calendar cal = Calendar.getInstance();
             int hour = cal.get(Calendar.HOUR);
 
-//            switch (hour) {
-//                case 2:case 3:case 4:
-//                    base_time = "0200";
-//                    break;
-//                case 5:case 6:case 7:
-//                    base_time = "0500";
-//                    break;
-//                case 8:case 9:case 10:
-//                    base_time= "0800";
-//                    break;
-//                case 11:case 12:case 13:
-//                    base_time = "1000";
-//                    break;
-//                case 14:case 15:case 16:
-//                    base_time = "1400";
-//                    break;
-//                case 17:case 18:case 19:
-//                    base_time="1700";
-//                    break;
-//                case 20:case 21:case 22:
-//                    base_time="2000";
-//                    break;
-//                case 23:case 24:case 1:
-//                    base_time="2300";
-//                    break;
-//                default:
-//                    base_time = "0200";
-//                    break;
-//            }
+            switch (hour) {
+                 case 3:case 4:case 5:
+                    base_time = "0200";
+                    break;
+                case 6:case 7:case 8:
+                    base_time = "0500";
+                    break;
+                case 9:case 10:case 11:
+                    base_time= "0800";
+                    break;
+                case 12:case 13:case 14:
+                    base_time = "1000";
+                    break;
+                case 15:case 16:case 17:case 18:case 19:case 20:
+                    base_time = "1400";
+                    break;
+                case 21:case 22:case 23:
+                    base_time = "2000";
+                    break;
+                case 24:case 1:case 2:
+                    base_time="2300";
+                    break;
+            }
 
-            base_time= "0500";
             weather_url= "http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?serviceKey="+key + "&base_date=" + weather_date + "&base_time="+base_time+"&nx=61&ny=120&numOfRows=10&_type=xml";
 
             URL url;
@@ -259,6 +265,7 @@ public class DialogActivity extends AppCompatActivity {
                 NodeList idx = fstElmnt.getElementsByTagName("category");
 
 
+
                 // 구름상태 SKY, fcstValue 구름상태에 해당하는 값
                 // 0~2 : 맑음, 3~5 : 구름조금, 6~8 : 구름많음, 9~10 : 흐림
 
@@ -267,6 +274,8 @@ public class DialogActivity extends AppCompatActivity {
                     NodeList gugun = fstElmnt.getElementsByTagName("fcstValue");
 
                     int cloud_num = Integer.parseInt(gugun.item(0).getChildNodes().item(0).getNodeValue());
+
+
 
 
                     if (cloud_num == 0 || cloud_num == 1 || cloud_num == 2) {

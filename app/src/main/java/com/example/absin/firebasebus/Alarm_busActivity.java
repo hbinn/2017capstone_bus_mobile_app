@@ -7,7 +7,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -30,6 +32,8 @@ public class Alarm_busActivity extends AppCompatActivity {
     Item bus = null;
     RecyclerView recyclerView;
     EditText et1;
+
+    LinearLayout imgDefault;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -158,6 +162,17 @@ public class Alarm_busActivity extends AppCompatActivity {
             //어답터 연결
             Alarm_bus_Adapter adapter = new Alarm_bus_Adapter(Alarm_busActivity.this, getApplicationContext(), list);
             recyclerView.setAdapter(adapter);
+
+            imgDefault = (LinearLayout) findViewById(R.id.imgDefault);
+            if (adapter.getItemCount() > 0) {
+                imgDefault.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
+            else {
+                imgDefault.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
+            }
+
         }
     }
 

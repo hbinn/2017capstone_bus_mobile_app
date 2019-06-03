@@ -88,6 +88,7 @@ public class GetAlarmInfo extends AppCompatActivity {
         //데이터 담아서 팝업(액티비티) 호출, 버스번호에 맞춰 경유 정류장을 가져오기 위한 것
         Intent intent = new Intent(this, Alarm_stationActivity.class);
         intent.putExtra("RouteId", alarmInfo.getBus_routeId());
+        intent.putExtra("RouteName", alarmInfo.getBus_number());
         startActivityForResult(intent, 2);
     }
 

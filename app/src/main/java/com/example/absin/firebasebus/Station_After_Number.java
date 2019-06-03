@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -41,6 +43,7 @@ public class Station_After_Number extends AppCompatActivity {
     station_after bus = null;
     RecyclerView recyclerView;
     String routeId;
+    String routeName;
 
     ImageView refreshBtn;
 
@@ -54,6 +57,15 @@ public class Station_After_Number extends AppCompatActivity {
         refreshBtn = (ImageView) findViewById(R.id.refresh_btn);
         Intent intent = getIntent();
         routeId = intent.getStringExtra("RouteId");
+        routeName = intent.getStringExtra("RouteName");
+
+        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.app_toolbar);
+        setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setTitle(Html.fromHtml("<font color='#FFFFFF'>"+routeName+ "번 경유 정류장"+"</font>"));
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_viewSAN);
         recyclerView.setHasFixedSize(true);

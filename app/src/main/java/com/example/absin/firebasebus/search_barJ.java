@@ -1,6 +1,7 @@
 package com.example.absin.firebasebus;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -33,12 +35,14 @@ public class search_barJ extends AppCompatActivity {
     ArrayList<Item> list = null;
     Item bus = null;
     RecyclerView recyclerView;
+    LinearLayout imgDefault;
 
     public String dataKey2 = "vgOxwLDnBL1K%2B0EV%2FG7Yi%2Bge%2BwfXMB66UwEnnmJEUuoej7Zg75Z85lE7wOcYZcysMUq5Sa2VGKzNsczJqzgg9A%3D%3D";
     private String requestUrl2;
     ArrayList<BusStop_item> list2 = null;
     BusStop_item busStop = null;
     RecyclerView recyclerView2;
+    int check=1; //seach_barJ가 어디서 불려서 실행되었는지 구분하기 위해서
 
 
 
@@ -58,7 +62,14 @@ public class search_barJ extends AppCompatActivity {
         tabSpecBusStop.setContent(R.id.busstop);
         tabHost.addTab(tabSpecBusStop);
 
-        tabHost.setCurrentTab(0);
+        Intent intent = getIntent();
+        check = intent.getIntExtra("Checksum", 0);
+
+        if(check==2){
+            tabHost.setCurrentTab(1);
+        }else {
+            tabHost.setCurrentTab(0);
+        }
 
 
         et1 = (EditText) findViewById(R.id.et2);
@@ -242,6 +253,16 @@ public class search_barJ extends AppCompatActivity {
             //어답터 연결
             MyAdapter adapter = new MyAdapter(getApplicationContext(), list);
             recyclerView.setAdapter(adapter);
+
+            imgDefault = (LinearLayout) findViewById(R.id.imgDefault);
+            if (adapter.getItemCount() > 0) {
+                imgDefault.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
+            else {
+                imgDefault.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
+            }
         }
     }
 
