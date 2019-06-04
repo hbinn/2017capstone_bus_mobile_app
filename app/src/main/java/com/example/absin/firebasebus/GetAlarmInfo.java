@@ -150,6 +150,9 @@ public class GetAlarmInfo extends AppCompatActivity {
         intent.putExtra("weekday", week);
         intent.putExtra("gapTime", alarmInfo.getGapTime());
         intent.putExtra("endTime", alarmInfo.getEndTime());
+        System.out.println("시간 두번째"+ alarmInfo.getEndTime());
+        String sub = alarmInfo.getStrEndTime();
+        intent.putExtra("endTime2", sub);
         intent.putExtra("RouteId", alarmInfo.getBus_routeId());
         intent.putExtra("BusNumber", alarmInfo.getBus_number());
         intent.putExtra("StationId", alarmInfo.getBus_stationId());

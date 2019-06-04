@@ -8,14 +8,16 @@ import java.util.Calendar;
 
 public class MyItem {
     //private boolean[] week = new boolean[8];
-    private String REQCODE1;
-    private String REQCODE2;
+    public String REQCODE1;
+    public String REQCODE2;
     private String days;
     private String startTime;
     private String endTime;
     private String gapTime;
     private String bus_number;
     private String bus_station;
+    private String bus_stationId;
+    private String bus_routeId;
 
 //    public boolean[] getWeek() {
 //        return week;
@@ -25,6 +27,14 @@ public class MyItem {
 //        this.week = week;
 //    }
 
+    //추가
+    public String getBus_stationId() {return bus_stationId;}
+
+    public  void setBus_stationId(String bus_stationId) {this.bus_stationId = bus_stationId;}
+
+    public String getBus_routeId() { return bus_routeId;}
+
+    public  void setBus_routeId(String bus_routeId) {this.bus_routeId = bus_routeId; }
 
     public String getREQCODE1() {
         return REQCODE1;
@@ -86,10 +96,11 @@ public class MyItem {
         this.bus_station = bus_station;
     }
 
+    //변경사항
     public String toString() {
         String str =  REQCODE1 + "," + REQCODE2 + "," + days + "," +
                 startTime + "," + endTime + "," + gapTime + "," +
-                bus_number + "," + bus_station;
+                bus_number + "," + bus_station+","+bus_routeId+","+bus_stationId;
 
         return str;
     }

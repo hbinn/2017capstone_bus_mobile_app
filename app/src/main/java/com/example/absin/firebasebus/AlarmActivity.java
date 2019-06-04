@@ -92,9 +92,11 @@ public class AlarmActivity extends AppCompatActivity {
             AlarmInfo ai = (AlarmInfo) data.getParcelableExtra("alarmInfo");
             alarmList.add(ai);
 
+
+            //변경사항
             myAdapter.addItem(""+ ai.getRequestCode1(), ""+ai.getRequestCode2(),
                     ai.getDays(), ai.getStrStartTime(), ai.getStrEndTime(), "" + ai.getGapTime(),
-                    ai.getBus_number(), ai.getBus_station());
+                    ai.getBus_number(), ai.getBus_station(), ai.getBus_routeId(), ai.getBus_stationId());
             mLIstView.setAdapter(myAdapter);
 
             myAdapter.editClick(false);
@@ -117,15 +119,16 @@ public class AlarmActivity extends AppCompatActivity {
         return builder;
     }
 
-//    public void cancelAlarm(int reqCode1, int reqCode2) {
-//        am = (AlarmManager) getSystemService(ALARM_SERVICE);
-//        Intent intent1 = new Intent(this, AlarmReceiver.class);
-//        Intent intent2 = new Intent(this, Recevier2.class);
-//        PendingIntent sender1 = PendingIntent.getBroadcast(this, reqCode1, intent1, 0);
-//        PendingIntent sender2 = PendingIntent.getBroadcast(this, reqCode2, intent2, 0);
-//        am.cancel(sender2);
-//        am.cancel(sender1);
-//    }
+    public void cancelAlarm(int reqCode1, int reqCode2) {
+        Intent intent1 = new Intent(this, AlarmReceiver.class);
+        Intent intent2 = new Intent(this, Recevier2.class);
+        PendingIntent sender1 = PendingIntent.getBroadcast(this, reqCode1, intent1, 0);
+        PendingIntent sender2 = PendingIntent.getBroadcast(this, reqCode2, intent2, 0);
+        AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
+        System.out.println("알람 삭제됨");
+        am.cancel(sender2);
+        am.cancel(sender1);
+    }
 
     private void putFile() {
         File file = new File(getFilesDir(), fileName);

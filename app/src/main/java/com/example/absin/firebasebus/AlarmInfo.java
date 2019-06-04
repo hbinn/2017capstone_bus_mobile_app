@@ -26,6 +26,7 @@ public class AlarmInfo implements Parcelable {
 
     //private AlarmManager am;
 
+
     public AlarmInfo(int requestCode1, int requestCode2) {
         this.requestCode1 = requestCode1;
         this.requestCode2 = requestCode2;
@@ -41,6 +42,9 @@ public class AlarmInfo implements Parcelable {
         bus_number = parcel.readString();
         bus_stationId = parcel.readString();
         bus_station = parcel.readString();
+        //수정부분
+        requestCode1 = parcel.readInt();
+        requestCode2 = parcel.readInt();
     }
 
     public static final Creator<AlarmInfo> CREATOR = new Creator<AlarmInfo>() {
@@ -170,5 +174,8 @@ public class AlarmInfo implements Parcelable {
         parcel.writeString(bus_number);
         parcel.writeString(bus_stationId);
         parcel.writeString(bus_station);
+        //수정부분
+        parcel.writeInt(requestCode1);
+        parcel.writeInt(requestCode2);
     }
 }

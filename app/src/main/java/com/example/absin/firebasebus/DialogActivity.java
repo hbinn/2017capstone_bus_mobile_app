@@ -203,7 +203,7 @@ public class DialogActivity extends AppCompatActivity {
         protected Document doInBackground(String... urls) {
 
             Calendar cal = Calendar.getInstance();
-            int hour = cal.get(Calendar.HOUR);
+            int hour = cal.get(Calendar.HOUR_OF_DAY);
 
             switch (hour) {
                  case 3:case 4:case 5:
@@ -229,7 +229,7 @@ public class DialogActivity extends AppCompatActivity {
                     break;
             }
 
-            weather_url= "http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?serviceKey="+key + "&base_date=" + weather_date + "&base_time="+base_time+"&nx=61&ny=120&numOfRows=10&_type=xml";
+            weather_url= "http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?serviceKey="+key + "&base_date=" + weather_date + "&base_time="+base_time+"&nx=62&ny=122&numOfRows=10&_type=xml";
 
             URL url;
             Document doc = null;
