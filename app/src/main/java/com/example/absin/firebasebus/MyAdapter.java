@@ -79,6 +79,9 @@ MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private LayoutInflater mInflate;
     private Context mContext;
+    static boolean isStarClicked =false;
+    private String selectedBus;
+    private ArrayList<String> starList = new ArrayList<>();
 
     public MyAdapter(Context context, ArrayList<Item> itmes) {
         this.mList = itmes;
@@ -88,12 +91,31 @@ MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     }
 
+    public int getCount() {
+        return mList.size();
+    }
+
+    public Object getItem(int i) {
+        return mList.get(i);
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return 0;
+    }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mInflate.inflate(R.layout.item, parent, false);
         MyViewHolder viewHolder = new MyViewHolder(view);
+
+        for (int i=0; i<starList.size(); i++) {
+
+        }
+        if (isStarClicked) {
+            viewHolder.star.setChecked(true);
+        }
 
         return viewHolder;
 
@@ -141,15 +163,19 @@ MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 if(holder.star.isChecked()){//체크되면
                     holder.star.setChecked(true);
                     Toast.makeText(mContext, "즐겨찾기에 저장되었습니다.", Toast.LENGTH_LONG).show();
-                    Context context = view.getContext();
-                    Intent intent = new Intent(context,MainActivity.class);
-                    intent.putExtra("RouteName", mList.get(position).routeName);
+                    isStarClicked = true;
+                    selectedBus = mList.get(position).routeName;
+                    starList.add(selectedBus);
+                    ((search_barJ)search_barJ.mContext).putFile(starList);
+                    //Context context = view.getContext();
+                    //Intent intent = new Intent(context,MainActivity.class);
+                    //intent.putExtra("RouteName", mList.get(position).routeName);
 
                 }
                 else{//체크 사라지면
                     holder.star.setChecked(false);
                     Toast.makeText(mContext, "즐겨찾기에 삭제되었습니다.", Toast.LENGTH_LONG).show();
-
+                    isStarClicked = false;
                 }
             }
         });
@@ -157,7 +183,13 @@ MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     }
 
+//    public boolean isStarClicked() {
+//        return isStarClicked;
+//    }
 
+    public String getSelectedBus() {
+        return selectedBus;
+    }
 
     @Override
     public int getItemCount() {

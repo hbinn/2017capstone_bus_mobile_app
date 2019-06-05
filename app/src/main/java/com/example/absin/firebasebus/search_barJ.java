@@ -1,5 +1,6 @@
 package com.example.absin.firebasebus;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -14,10 +15,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
+import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -29,6 +35,7 @@ public class search_barJ extends AppCompatActivity {
     final String TAG = "search_barJ";
     EditText et1, et4;
     String keyword, keyword2;
+    private String fileName = "star.list";
 
     public String dataKey = "vgOxwLDnBL1K%2B0EV%2FG7Yi%2Bge%2BwfXMB66UwEnnmJEUuoej7Zg75Z85lE7wOcYZcysMUq5Sa2VGKzNsczJqzgg9A%3D%3D";
     private String requestUrl;
@@ -44,12 +51,16 @@ public class search_barJ extends AppCompatActivity {
     RecyclerView recyclerView2;
     int check=1; //seach_barJ가 어디서 불려서 실행되었는지 구분하기 위해서
 
+    MyAdapter adapter;
+    public static Context mContext;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_bar);
+        mContext = this;
 
         TabHost tabHost = (TabHost)findViewById(R.id.th);
         tabHost.setup();
@@ -95,7 +106,6 @@ public class search_barJ extends AppCompatActivity {
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // 입력되는 텍스트에 변화가 있을 때
-
                 recyclerView.removeAllViewsInLayout();
                 keyword = et1.getText().toString();
                 //  recyclerView.setAdapter(adapter);
@@ -105,7 +115,6 @@ public class search_barJ extends AppCompatActivity {
 
 
             public void afterTextChanged(Editable arg0) {
-
                 // 입력이 끝났을 때
 
             }
@@ -249,10 +258,17 @@ public class search_barJ extends AppCompatActivity {
         //   @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            String selectedBus;
 
             //어답터 연결
-            MyAdapter adapter = new MyAdapter(getApplicationContext(), list);
+            adapter = new MyAdapter(getApplicationContext(), list);
             recyclerView.setAdapter(adapter);
+
+            if (adapter.isStarClicked) {
+                //Toast.makeText(getApplicationContext(), "저장하자", Toast.LENGTH_SHORT).show();
+                //selectedBus = adapter.getSelectedBus();
+                //putFile(selectedBus);
+            }
 
             imgDefault = (LinearLayout) findViewById(R.id.imgDefault);
             if (adapter.getItemCount() > 0) {
@@ -325,6 +341,7 @@ public class search_barJ extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
             return null;
         }
 
@@ -335,6 +352,45 @@ public class search_barJ extends AppCompatActivity {
             //어답터 연결
             MyAdapter2 adapter = new MyAdapter2(getApplicationContext(), list2);
             recyclerView2.setAdapter(adapter);
+        }
+    }
+
+    public void putFile(ArrayList<String> selectedBuses) {
+        File file = new File(getFilesDir(), fileName);
+        FileWriter fw = null;
+        BufferedWriter bufwr = null;
+
+        try {
+            fw = new FileWriter(file);
+            bufwr = new BufferedWriter(fw);
+
+//            for (int i=0; i<adapter.getCount(); i++) {
+//                bufwr.write(adapter.getItem(i).toString());
+//                bufwr.newLine();
+//            }
+
+            for (int i=0; i<selectedBuses.size(); i++) {
+                bufwr.write(selectedBuses.get(i));
+                bufwr.newLine();
+            }
+
+            bufwr.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            if (bufwr != null) {
+                bufwr.close();
+            }
+
+            if (fw != null) {
+                fw.close();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

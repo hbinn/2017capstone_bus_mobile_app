@@ -14,7 +14,9 @@ package com.example.absin.firebasebus;
  import android.widget.TextView;
         import android.widget.Toast;
 
-        import java.io.InputStreamReader;
+ import java.io.File;
+ import java.io.FileReader;
+ import java.io.InputStreamReader;
         import java.net.HttpURLConnection;
         import java.net.URL;
         import java.net.URLEncoder;
@@ -25,16 +27,23 @@ package com.example.absin.firebasebus;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String fileName = "star.list";
+    MyAdapter_star adapter_star;
+    ListView list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        list = (ListView)findViewById(R.id.main_list);
+        adapter_star = new MyAdapter_star(this, MainActivity.this );
+        loadFile();
+
+
         //즐겨찾기 기능 추가(미완)
         /*
         final ArrayList<String> names = new ArrayList<>();
-        ListView list = (ListView)findViewById(R.id.main_list);
 
         Intent intent2 = getIntent();
         String  name = intent2.getStringExtra("RouteName"); //인텐트로 버스이름 받아오기
@@ -120,5 +129,30 @@ public class MainActivity extends AppCompatActivity {
     public void settingClick(View v) {
         Intent intent = new Intent(getApplicationContext(), setting.class);
         startActivity(intent);
+    }
+
+    private void loadFile() {
+        File file = new File(getFilesDir(), fileName);
+        FileReader fr = null;
+        BufferedReader bufrd = null;
+        String str;
+
+        if (file.exists()) {
+            try {
+                fr = new FileReader(file);
+                bufrd = new BufferedReader(fr);
+
+                while ((str = bufrd.readLine()) != null) {
+                    adapter_star.addItem(str);
+                }
+
+                bufrd.close();
+                fr.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        list.setAdapter(adapter_star);
+
     }
 }
