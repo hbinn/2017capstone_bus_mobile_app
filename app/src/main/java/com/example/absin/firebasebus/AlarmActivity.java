@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.icu.text.UnicodeSetSpanner;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -94,9 +95,12 @@ public class AlarmActivity extends AppCompatActivity {
 
 
             //변경사항
+//            myAdapter.addItem(""+ ai.getRequestCode1(), ""+ai.getRequestCode2(),
+//                    ai.getDays(), ai.getStrStartTime(), ai.getStrEndTime(), "" + ai.getGapTime(),
+//                    ai.getBus_number(), ai.getBus_station());
             myAdapter.addItem(""+ ai.getRequestCode1(), ""+ai.getRequestCode2(),
                     ai.getDays(), ai.getStrStartTime(), ai.getStrEndTime(), "" + ai.getGapTime(),
-                    ai.getBus_number(), ai.getBus_station(), ai.getBus_routeId(), ai.getBus_stationId());
+                    ai.getBus_number(), ai.getBus_station(), ai.getBus_routeId(), ai.getBus_stationId(), "on");
             mLIstView.setAdapter(myAdapter);
 
             myAdapter.editClick(false);
@@ -128,9 +132,10 @@ public class AlarmActivity extends AppCompatActivity {
         System.out.println("알람 삭제됨");
         am.cancel(sender2);
         am.cancel(sender1);
+
     }
 
-    private void putFile() {
+    public void putFile() {
         File file = new File(getFilesDir(), fileName);
         FileWriter fw = null;
         BufferedWriter bufwr = null;

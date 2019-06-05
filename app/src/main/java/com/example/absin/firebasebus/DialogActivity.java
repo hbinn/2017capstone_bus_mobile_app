@@ -106,7 +106,7 @@ public class DialogActivity extends AppCompatActivity {
         mp.start();
 
         //진동
-        vibrate();
+       // vibrate();
 
 
         Calendar time_cal = Calendar.getInstance(Locale.getDefault());
@@ -216,7 +216,7 @@ public class DialogActivity extends AppCompatActivity {
                     base_time= "0800";
                     break;
                 case 12:case 13:case 14:
-                    base_time = "1000";
+                    base_time = "1100";
                     break;
                 case 15:case 16:case 17:case 18:case 19:case 20:
                     base_time = "1400";
@@ -228,6 +228,7 @@ public class DialogActivity extends AppCompatActivity {
                     base_time="2300";
                     break;
             }
+
 
             weather_url= "http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?serviceKey="+key + "&base_date=" + weather_date + "&base_time="+base_time+"&nx=62&ny=122&numOfRows=10&_type=xml";
 

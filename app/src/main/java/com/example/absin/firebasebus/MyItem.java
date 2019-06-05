@@ -16,8 +16,11 @@ public class MyItem {
     private String gapTime;
     private String bus_number;
     private String bus_station;
+
     private String bus_stationId;
     private String bus_routeId;
+    private String on_off;
+
 
 //    public boolean[] getWeek() {
 //        return week;
@@ -35,6 +38,10 @@ public class MyItem {
     public String getBus_routeId() { return bus_routeId;}
 
     public  void setBus_routeId(String bus_routeId) {this.bus_routeId = bus_routeId; }
+
+    public String getOn_off() { return  on_off;}
+
+    public void setOn_off(String on_off) {this.on_off = on_off;}
 
     public String getREQCODE1() {
         return REQCODE1;
@@ -98,9 +105,13 @@ public class MyItem {
 
     //변경사항
     public String toString() {
+
+//        String str =  REQCODE1 + "," + REQCODE2 + "," + days + "," +
+//                startTime + "," + endTime + "," + gapTime + "," +
+//                bus_number + "," + bus_station;
         String str =  REQCODE1 + "," + REQCODE2 + "," + days + "," +
                 startTime + "," + endTime + "," + gapTime + "," +
-                bus_number + "," + bus_station+","+bus_routeId+","+bus_stationId;
+                bus_number + "," + bus_station+","+bus_routeId+","+bus_stationId +","+ on_off;
 
         return str;
     }
