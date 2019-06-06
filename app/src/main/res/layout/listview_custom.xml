@@ -119,13 +119,13 @@
                 android:textColor="@color/kyonggi_blue"
                 android:text="승차정거장"/>
 
-            <TextView
-                android:id="@+id/txtOffStop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:textSize="16dp"
-                android:text="하차정거장"/>
+            <!--<TextView-->
+                <!--android:id="@+id/txtOffStop"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textSize="16dp"-->
+                <!--android:text="하차정거장"/>-->
         </LinearLayout>
 
     </LinearLayout>

@@ -40,12 +40,23 @@
                         android:id="@+id/et2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingVertical="13dp"
                         android:background="@null"
                         android:textCursorDrawable="@drawable/cursor_color"
+                        android:maxLines="1"
+                        android:inputType="numberSigned|number"
+                        android:digits="0123456789-"
                         android:textSize="15dp"
-                        android:hint="버스 입력" />
+                        android:hint="버스 입력">
+                        <requestFocus/>
+                    </EditText>
                 </LinearLayout>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/grey0" />
 
             <TabWidget
                 android:id="@android:id/tabs"

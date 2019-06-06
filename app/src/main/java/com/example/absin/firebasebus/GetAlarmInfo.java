@@ -98,6 +98,7 @@ public class GetAlarmInfo extends AppCompatActivity {
                 //데이터 받기
                 String result[] = data.getStringArrayExtra("RouteId");
                 input_bus.setText(result[0]);
+                input_bus.setBackground(ContextCompat.getDrawable(GetAlarmInfo.this,R.drawable.searchboxoff));
                 alarmInfo.setBus_number(result[0]);
                 alarmInfo.setBus_routeId(result[1]);
             }
@@ -108,6 +109,7 @@ public class GetAlarmInfo extends AppCompatActivity {
                 //데이터 받기
                 String result[] = data.getStringArrayExtra("StationId");
                 input_station.setText(result[0]);
+                input_station.setBackground(ContextCompat.getDrawable(GetAlarmInfo.this,R.drawable.searchboxoff));
                 alarmInfo.setBus_station(result[0]);
                 alarmInfo.setBus_stationId(result[1]);
             }

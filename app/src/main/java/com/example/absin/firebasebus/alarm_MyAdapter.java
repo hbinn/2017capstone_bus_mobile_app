@@ -76,7 +76,7 @@ public class alarm_MyAdapter extends BaseAdapter {
         TextView txtDays = (TextView) view.findViewById(R.id.txtDays);
         TextView txtBusNum = (TextView) view.findViewById(R.id.txtBusNum);
         TextView txtOnStop = (TextView) view.findViewById(R.id.txtOnStop);
-        TextView txtOffStop = (TextView) view.findViewById(R.id.txtOffStop);
+        //TextView txtOffStop = (TextView) view.findViewById(R.id.txtOffStop);
 
         final MyItem myItem = itemList.get(position);
 
@@ -101,7 +101,7 @@ public class alarm_MyAdapter extends BaseAdapter {
         txtGapTime.setText("도착  " + myItem.getGapTime() + " 분 전");
         txtDays.setText(myItem.getDays());
         txtBusNum.setText(myItem.getBus_number());
-        txtOnStop.setText(myItem.getBus_station());
+        txtOnStop.setText("승차 정거장: " + myItem.getBus_station());
 
 
 

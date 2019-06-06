@@ -27,6 +27,7 @@
                 android:id="@+id/main_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingVertical="13dp"
                 android:textSize="15dp"
                 android:hint="버스/정류장 검색" />
         </LinearLayout>
@@ -44,7 +45,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/grey2" />
+        android:background="@color/grey0" />
 
     <RelativeLayout
         android:orientation="vertical"

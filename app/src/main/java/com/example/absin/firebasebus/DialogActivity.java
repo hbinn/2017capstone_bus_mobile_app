@@ -48,8 +48,8 @@ public class DialogActivity extends AppCompatActivity {
     TextView timeView;
     View get_bus;
     View not_get_bus;
-    SwitchIconView switchIcon1;
-    SwitchIconView switchIcon2;
+    //SwitchIconView switchIcon1;
+    //SwitchIconView switchIcon2;
     TextView pTime1;
     TextView pTime2;
     TextView bus_number;
@@ -64,8 +64,8 @@ public class DialogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarm_dialog);
 
-        switchIcon1 = (SwitchIconView) findViewById(R.id.switchIconView1);
-        switchIcon2 = (SwitchIconView) findViewById(R.id.switchIconView2);
+        //switchIcon1 = (SwitchIconView) findViewById(R.id.switchIconView1);
+        //switchIcon2 = (SwitchIconView) findViewById(R.id.switchIconView2);
         timeView = (TextView) findViewById(R.id.get_time);
         get_bus = (View) findViewById(R.id.get_bus);
         not_get_bus = (View) findViewById(R.id.not_get_bus);
@@ -153,7 +153,7 @@ public class DialogActivity extends AppCompatActivity {
         get_bus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switchIcon1.switchState();
+                //switchIcon1.switchState();
                 alarmManager.cancel(sender);
                 finish();
             }
@@ -163,7 +163,7 @@ public class DialogActivity extends AppCompatActivity {
         not_get_bus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switchIcon2.switchState();
+                //switchIcon2.switchState();
                 finish();
                 //딱히 하는 일은 없고 그냥 dialog 창을 없애주기만 한다.
             }

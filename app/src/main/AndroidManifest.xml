@@ -87,6 +87,7 @@
         <activity android:name=".GetAlarmInfo"/>
 
         <activity android:name=".DialogActivity"
+            android:screenOrientation="portrait"
             android:noHistory="true"/>
 
         <!--

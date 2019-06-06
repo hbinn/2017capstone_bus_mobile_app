@@ -5,12 +5,16 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.text.method.DigitsKeyListener;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -68,42 +72,47 @@ public class search_barJ extends AppCompatActivity {
 
         TabHost.TabSpec tabSpecBus = tabHost.newTabSpec("BUS").setIndicator("버스");
         tabSpecBus.setContent(R.id.bus);
-        et1 = (EditText) findViewById(R.id.et2);
         tabHost.addTab(tabSpecBus);
 
         TabHost.TabSpec tabSpecBusStop = tabHost.newTabSpec("BUSSTOP").setIndicator("정류장");
         tabSpecBusStop.setContent(R.id.busstop);
-        et4 = (EditText) findViewById(R.id.et2);
-
         tabHost.addTab(tabSpecBusStop);
 
         Intent intent = getIntent();
         check = intent.getIntExtra("Checksum", 0);
 
-        if(check==2){
-            tabHost.setCurrentTab(1);
+//        if(check==2){
+//            tabHost.setCurrentTab(1);
+//
+//        }else {
+//            tabHost.setCurrentTab(0);
+//        }
 
-        }else {
-            tabHost.setCurrentTab(0);
-        }
+        et1 = (EditText) findViewById(R.id.et2);
+        //et4 = (EditText) findViewById(R.id.et2);
+
 
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            //InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
             @Override
             public void onTabChanged(String s) {
                 if (s.equalsIgnoreCase("BUSSTOP")) {
                     et1.setHint("정류장 입력");
+                    //et1.requestFocus();
+                    //imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+                    et1.setInputType(InputType.TYPE_CLASS_TEXT);
                 }
                 else if (s.equalsIgnoreCase("BUS")) {
                     et1.setHint("버스 입력");
+                    //et1.requestFocus();
+                    //imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+                    et1.setInputType(InputType.TYPE_NUMBER_FLAG_SIGNED|InputType.TYPE_CLASS_NUMBER);
+                    et1.setKeyListener(DigitsKeyListener.getInstance("0123456789-"));
+
                 }
             }
         });
-
-
-        //et1 = (EditText) findViewById(R.id.et2);
-        //et4 = (EditText) findViewById(R.id.et3);
-        //et4 = (EditText) findViewById(R.id.et2);
-
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -145,13 +154,15 @@ public class search_barJ extends AppCompatActivity {
 
         });
 
-        et4.addTextChangedListener(new TextWatcher() {
+        //et4.addTextChangedListener(new TextWatcher() {
+        et1.addTextChangedListener(new TextWatcher() {
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // 입력되는 텍스트에 변화가 있을 때
 
                 recyclerView2.removeAllViewsInLayout();
-                keyword2 = et4.getText().toString();
+                //keyword2 = et4.getText().toString();
+                keyword2 = et1.getText().toString();
                 //  recyclerView.setAdapter(adapter);
                 MyAsyncTask2 myAsyncTask2 = new MyAsyncTask2();
                 myAsyncTask2.execute();
