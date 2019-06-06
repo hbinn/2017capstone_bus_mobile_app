@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
+import android.widget.TabWidget;
 import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -67,10 +68,13 @@ public class search_barJ extends AppCompatActivity {
 
         TabHost.TabSpec tabSpecBus = tabHost.newTabSpec("BUS").setIndicator("버스");
         tabSpecBus.setContent(R.id.bus);
+        et1 = (EditText) findViewById(R.id.et2);
         tabHost.addTab(tabSpecBus);
 
         TabHost.TabSpec tabSpecBusStop = tabHost.newTabSpec("BUSSTOP").setIndicator("정류장");
         tabSpecBusStop.setContent(R.id.busstop);
+        et4 = (EditText) findViewById(R.id.et2);
+
         tabHost.addTab(tabSpecBusStop);
 
         Intent intent = getIntent();
@@ -78,13 +82,27 @@ public class search_barJ extends AppCompatActivity {
 
         if(check==2){
             tabHost.setCurrentTab(1);
+
         }else {
             tabHost.setCurrentTab(0);
         }
 
+        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String s) {
+                if (s.equalsIgnoreCase("BUSSTOP")) {
+                    et4.setHint("정류장 입력");
+                }
+                else if (s.equalsIgnoreCase("BUS")) {
+                    et1.setHint("버스 입력");
+                }
+            }
+        });
 
-        et1 = (EditText) findViewById(R.id.et2);
-        et4 = (EditText) findViewById(R.id.et3);
+
+        //et1 = (EditText) findViewById(R.id.et2);
+        //et4 = (EditText) findViewById(R.id.et3);
+        //et4 = (EditText) findViewById(R.id.et2);
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);

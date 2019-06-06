@@ -27,6 +27,7 @@
                 android:id="@+id/main_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="15dp"
                 android:hint="버스/정류장 검색" />
         </LinearLayout>
 
@@ -91,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="메모"
-                    android:textSize="20dp" />
+                    android:textSize="17dp" />
             </LinearLayout>
         </LinearLayout>
 
