@@ -91,7 +91,7 @@ public class search_barJ extends AppCompatActivity {
             @Override
             public void onTabChanged(String s) {
                 if (s.equalsIgnoreCase("BUSSTOP")) {
-                    et4.setHint("정류장 입력");
+                    et1.setHint("정류장 입력");
                 }
                 else if (s.equalsIgnoreCase("BUS")) {
                     et1.setHint("버스 입력");
