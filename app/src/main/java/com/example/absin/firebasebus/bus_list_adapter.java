@@ -17,6 +17,24 @@ class bus_list_item { // 해당 정류장을 지나는 모든 버스 출력
 
     String routeId; //버스 아이디
     String routeName; //버스 번호
+
+    String predictTime1="도착정보없음";
+    String predictTime2="도착정보없음";
+
+    public String getPredictTime1(){
+        return predictTime1;
+    }
+    public void setPredictTime1(String predictTime1){
+        this.predictTime1 = predictTime1;
+    }
+
+    public String getPredictTime2(){
+        return predictTime2;
+    }
+    public void setPredictTime2(String predictTime2){
+        this.predictTime2 = predictTime2;
+    }
+
     public String getrouteId() {
         return routeId;
     }
@@ -51,6 +69,9 @@ public class bus_list_adapter extends RecyclerView.Adapter<bus_list_adapter.MyVi
 
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         holder.tv_routeName.setText(mList.get(position).routeName);
+        holder.tv_predictTime1.setText(mList.get(position).predictTime1);
+        holder.tv_predictTime2.setText(mList.get(position).predictTime2);
+
 
         //Click event
     }
@@ -61,11 +82,15 @@ public class bus_list_adapter extends RecyclerView.Adapter<bus_list_adapter.MyVi
     //ViewHolder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_routeName;
+        public TextView tv_predictTime1;
+        public TextView tv_predictTime2;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
             tv_routeName = itemView.findViewById(R.id.tv_routeName);
+            tv_predictTime1 = itemView.findViewById(R.id.tv_predict1);
+            tv_predictTime2 = itemView.findViewById(R.id.tv_predict2);
         }
     }
 }

@@ -16,6 +16,16 @@ class bus_time{
     String predictTime1;
     String predictTime2;
 
+    String routeId;
+
+    public String getRouteid() {
+        return routeId;
+    }
+
+    public  void setRouteId(String routeId) {
+        this.routeId = routeId;
+    }
+
     public String getPredictTime1(){
         return predictTime1;
     }
@@ -31,13 +41,13 @@ class bus_time{
     }
 }
 
-public class time_adapter extends RecyclerView.Adapter<time_adapter.MyViewHolder>{
+public class time_adapter extends RecyclerView.Adapter<time_adapter.MyViewHolder> {
     private ArrayList<bus_time> mList;
     private LayoutInflater mInflate;
     private Context mContext;
     View view;
 
-    public time_adapter(Context context, ArrayList<bus_time>items){
+    public time_adapter(Context context, ArrayList<bus_time> items) {
         this.mList = items;
         this.mInflate = LayoutInflater.from(context);
         this.mContext = context;
@@ -51,25 +61,27 @@ public class time_adapter extends RecyclerView.Adapter<time_adapter.MyViewHolder
     }
 
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
-        holder.tv_predict1.setText(mList.get(position).predictTime1);
-        holder.tv_predict2.setText(mList.get(position).predictTime2);
+        holder.tv_predictTime1.setText(mList.get(position).predictTime1);
+        holder.tv_predictTime2.setText(mList.get(position).predictTime2);
 
         //Click event
     }
+
     public int getItemCount() {
         return mList.size();
     }
 
     //ViewHolder
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView tv_predict1;
-        public TextView tv_predict2;
+        public TextView tv_predictTime1;
+        public TextView tv_predictTime2;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            tv_predict1 = itemView.findViewById(R.id.tv_predict1);
-            tv_predict2 = itemView.findViewById(R.id.tv_predict2);
+
+            tv_predictTime1 = itemView.findViewById(R.id.tv_predict1);
+            tv_predictTime2 = itemView.findViewById(R.id.tv_predict2);
         }
     }
 }
