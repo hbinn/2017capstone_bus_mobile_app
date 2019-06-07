@@ -1,6 +1,7 @@
 package com.example.absin.firebasebus;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -84,6 +85,17 @@ public class AdapterSAN extends RecyclerView.Adapter<AdapterSAN.MyViewHolder> {
               holder.tv_stationName.setTextColor(Color.BLACK);
           }
         //Click event
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, bus_list.class);
+                intent.putExtra("stationId", mList.get(position).stationId);
+                intent.putExtra("stationName", mList.get(position).stationName);
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
