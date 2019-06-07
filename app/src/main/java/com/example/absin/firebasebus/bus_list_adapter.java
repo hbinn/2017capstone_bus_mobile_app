@@ -68,9 +68,22 @@ public class bus_list_adapter extends RecyclerView.Adapter<bus_list_adapter.MyVi
     }
 
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+
+        if(!mList.get(position).predictTime1.equals("도착정보없음")){
+            holder.tv_predictTime1.setText(mList.get(position).predictTime1 +"분전");
+        }
+        else{
+            holder.tv_predictTime1.setText(mList.get(position).predictTime1);
+        }
+
+        if(!mList.get(position).predictTime2.equals("도착정보없음")){
+            holder.tv_predictTime2.setText(mList.get(position).predictTime2 +"분전");
+        }
+        else{
+            holder.tv_predictTime2.setText(mList.get(position).predictTime2);
+        }
+
         holder.tv_routeName.setText(mList.get(position).routeName);
-        holder.tv_predictTime1.setText(mList.get(position).predictTime1);
-        holder.tv_predictTime2.setText(mList.get(position).predictTime2);
 
 
         //Click event
