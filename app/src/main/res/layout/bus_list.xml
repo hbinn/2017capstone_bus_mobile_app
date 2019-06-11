@@ -14,26 +14,28 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#707F9F"
+            android:background="#3852B3"
             android:paddingBottom="30dp"
             android:paddingTop="20dp">
 
             <TextView
-                android:text="아아"
+                android:text="정류장 번호"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_stationId"
+                android:textColor="#FFFFFF"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:textSize="20dp"
                 android:paddingBottom="20dp"
                 />
             <TextView
-                android:text="아아"
-                android:id="@+id/stationName"
+                android:text="정류장 이름"
+                android:textColor="#FFFFFF"
+                android:id="@+id/tv_stationName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="35dp"
+                android:textSize="25dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 />

@@ -20,17 +20,14 @@ class BusStop_item {
     public String getStationId() {
         return stationId;
     }
-
     public String getStationName() {
         return stationName;
     }
 
 
-
     public void setStationId(String stationId) {
         this.stationId = stationId;
     }
-
     public void setStationName(String stationName) {
         this.stationName = stationName;
     }
@@ -89,7 +86,6 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.MyViewHolder> {
         public TextView tv_stationId;
         public MyViewHolder(View itemView) {
             super(itemView);
-
 
             tv_stationName = itemView.findViewById(R.id.tv_stationName);
             tv_stationId = itemView.findViewById(R.id.tv_stationId);

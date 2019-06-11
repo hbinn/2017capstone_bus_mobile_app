@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -39,8 +40,9 @@ public class bus_list extends AppCompatActivity {
     bus_time list2_item = null;
 
     RecyclerView recyclerView;
-   // RecyclerView recyclerView2;
+
     String stationId;
+    String stationName;
 
     String g_routeId = null;
     String g_staOrder = null;
@@ -53,19 +55,22 @@ public class bus_list extends AppCompatActivity {
         setContentView(R.layout.bus_list);
 
         Intent intent = getIntent();
-        stationId = intent.getStringExtra("stationId");
+        stationId = intent.getExtras().getString("stationId");
+        stationName = intent.getExtras().getString("stationName");
+
+        TextView textView1 = (TextView) findViewById(R.id.tv_stationId) ;
+        TextView textView2 = (TextView) findViewById(R.id.tv_stationName) ;
+
+        textView1.setText(stationId);
+        textView2.setText(stationName);
 
         recyclerView = (RecyclerView) findViewById(R. id. recycler_bus_list);
         recyclerView.setHasFixedSize(true);
-
-//        recyclerView2 = (RecyclerView) findViewById(R. id. recycler_bus_list);
-//        recyclerView2.setHasFixedSize(true);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
         recyclerView.setLayoutManager(layoutManager);
-       // recyclerView2.setLayoutManager(layoutManager);
 
         MyAsyncTask4 myAsyncTask;
         myAsyncTask = new MyAsyncTask4();
@@ -136,9 +141,8 @@ public class bus_list extends AppCompatActivity {
 
 
 
-           // http://openapi.gbis.go.kr/ws/rest/busarrivalservice/station?serviceKey=vgOxwLDnBL1K%2B0EV%2FG7Yi%2Bge%2BwfXMB66UwEnnmJEUuoej7Zg75Z85lE7wOcYZcysMUq5Sa2VGKzNsczJqzgg9A%3D%3D&stationId=200000078
             requestUrl2 = "http://openapi.gbis.go.kr/ws/rest/busarrivalservice/station?serviceKey="+dataKey2+"&stationId="+stationId;
-         //   requestUrl2 = "http://openapi.gbis.go.kr/ws/rest/busarrivalservice?serviceKey=vgOxwLDnBL1K%2B0EV%2FG7Yi%2Bge%2BwfXMB66UwEnnmJEUuoej7Zg75Z85lE7wOcYZcysMUq5Sa2VGKzNsczJqzgg9A%3D%3D&stationId=203000035&routeId=234000013&staOrder=83";
+
             try {
                 boolean b_predictTime1 = false;
                 boolean b_predictTime2 = false;
@@ -197,9 +201,6 @@ public class bus_list extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            System.out.println("파싱다됨");
-
-
             //}
 
             return null;
@@ -207,8 +208,6 @@ public class bus_list extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-
-            System.out.println("밖");
 
             for(int i=0; i<list.size(); i++){
                 bus_list_item sub1 = list.get(i);
@@ -225,7 +224,6 @@ public class bus_list extends AppCompatActivity {
                         sub1.setPredictTime2(sub2.predictTime2);
                         System.out.println(sub2.predictTime1+" "+sub2.getPredictTime2());
                         list.set(i, sub1);
-                        System.out.println("실행이됨");
                     }
 
                 }
