@@ -24,6 +24,7 @@
             android:required="false"/>
 
 
+
         <activity android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -90,6 +91,9 @@
             android:screenOrientation="portrait"
             android:noHistory="true"/>
 
+
+        <receiver android:name="AlarmReceiver2" />
+        <receiver android:name=".Recevier3"/>
         <!--
         <activity android:name=".BusStop_activity"/>-->
 

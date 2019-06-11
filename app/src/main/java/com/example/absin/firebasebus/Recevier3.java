@@ -16,7 +16,7 @@ import static android.content.Context.ALARM_SERVICE;
  * Created by absin on 2019-05-26.
  */
 
-public class Recevier2 extends BroadcastReceiver  {
+public class Recevier3 extends BroadcastReceiver  {
 
     //AlarmManager am;
     //String endTime;
@@ -56,6 +56,7 @@ public class Recevier2 extends BroadcastReceiver  {
         int real_hour = end.get(Calendar.HOUR_OF_DAY);
         int real_minute= end.get(Calendar.MINUTE);
 
+        System.out.println("리시버 3에서 일어나는 일");
         System.out.println(endtime_hour+ " " + endtime_minute);
         System.out.println(real_hour+ " " +real_minute);
         if(endtime_hour<=real_hour && endtime_minute<=real_minute) {

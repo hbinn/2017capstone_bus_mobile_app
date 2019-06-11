@@ -13,7 +13,7 @@ import java.util.Calendar;
  * Created by Junny_PC on 2019-05-25.
  */
 
-public class AlarmReceiver extends BroadcastReceiver {
+public class AlarmReceiver2 extends BroadcastReceiver {
 
     private AlarmManager am2;
     String endTime;
@@ -37,7 +37,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         endTime2 = intent.getStringExtra("endTime2");
 
         am2 = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent2 = new Intent(context, Recevier2.class);
+        Intent intent2 = new Intent(context, Recevier3.class);
         intent2.putExtra("endTime", endTime);
         intent2.putExtra("endTime2", endTime2);
         intent2.putExtra("gapTime", gapTime);
@@ -46,7 +46,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         intent2.putExtra("StationId", bus_stationId);
         intent2.putExtra("REQCODE2", REQCODE2);
         //PendingIntent pIntent = PendingIntent.getBroadcast(context, 100, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
-        PendingIntent pIntent = PendingIntent.getBroadcast(context, REQCODE2, intent2,0);
+        PendingIntent pIntent = PendingIntent.getBroadcast(context, REQCODE2, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Calendar cal = Calendar.getInstance();
         if (!week[cal.get(Calendar.DAY_OF_WEEK)]) {
