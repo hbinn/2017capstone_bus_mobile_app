@@ -86,7 +86,7 @@ public class Alarm_station_Adapter extends RecyclerView.Adapter<Alarm_station_Ad
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                String result[] = {mList.get(position).stationName, mList.get(position).stationId};
+                String result[] = {mList.get(position).stationName, mList.get(position).stationId, mList.get(position-2).x, mList.get(position-2).y};
                 intent.putExtra("StationId", result);
                 mActivity.setResult(RESULT_OK, intent);
 
@@ -118,5 +118,4 @@ public class Alarm_station_Adapter extends RecyclerView.Adapter<Alarm_station_Ad
 
         }
     }
-
 }

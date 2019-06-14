@@ -81,15 +81,17 @@ public class search_barJ extends AppCompatActivity {
         Intent intent = getIntent();
         check = intent.getIntExtra("Checksum", 0);
 
-//        if(check==2){
-//            tabHost.setCurrentTab(1);
-//
-//        }else {
-//            tabHost.setCurrentTab(0);
-//        }
-
         et1 = (EditText) findViewById(R.id.et2);
         //et4 = (EditText) findViewById(R.id.et2);
+
+        if(check==2){
+            tabHost.setCurrentTab(1);
+            et1.setHint("정류장 입력");
+            et1.setInputType(InputType.TYPE_CLASS_TEXT);
+
+        }else {
+            tabHost.setCurrentTab(0);
+        }
 
 
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {

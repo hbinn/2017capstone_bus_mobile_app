@@ -22,12 +22,16 @@ class station_after {  //노선이 가지고 있는 정류장을 모두 출력�
     String stationId; //정류소 아이디
     String mobileNo; //정류소 번호
     String stationName;
+    String x;///////////////////////////////////////////////////////////
+    String y;///////////////////////////////////////////////
     int tracker =0;
 
 
     public String getStationId() { return stationId; }
     public String getMobileNo() { return mobileNo; }
     public String getStationName() { return stationName; }
+    public String getX() { return x; }/////////////////////////////////////////////////////////
+    public String getY() { return y; }/////////////////////////////////////////////
 
     public int getTracker() { return tracker; }
 
@@ -35,6 +39,8 @@ class station_after {  //노선이 가지고 있는 정류장을 모두 출력�
     public void setStationId(String stationId) { this.stationId = stationId; }
     public void setStationName(String stationName) { this.stationName = stationName; }
     public void setMobileNo(String mobileNo) { this.mobileNo = mobileNo; }
+    public void setX(String x) { this.x = x; }////////////////////////////////////////////////////
+    public void setY(String y) { this.y = y; }///////////////////////////////////////////////////////
 
     public void setTracker(int tracker) {this.tracker = tracker; }
 }

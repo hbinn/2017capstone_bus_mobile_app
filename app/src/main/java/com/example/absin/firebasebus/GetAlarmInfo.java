@@ -1,15 +1,19 @@
 package com.example.absin.firebasebus;
 
 import android.app.AlarmManager;
+import android.app.Dialog;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
@@ -34,9 +38,10 @@ public class GetAlarmInfo extends AppCompatActivity {
     TextView txtEndTime;
     TimePickerDialog dialog;
     TextView txtGapTime;
-    private NumberPicker gapPicker;
+    //private NumberPicker gapPicker;
     TextView input_bus;
     TextView input_station;
+    TextView getOffStation;     ///////////////////////////////////////////////////////////////////////////
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,11 +76,12 @@ public class GetAlarmInfo extends AppCompatActivity {
         getTime(txtEndTime);
 
         txtGapTime = (TextView) findViewById(R.id.txtGapTime);
-        gapPicker = (NumberPicker) findViewById(R.id.gapTime);
+        //gapPicker = (NumberPicker) findViewById(R.id.gapTime);
         getGapTime();
 
         input_bus = (TextView) findViewById(R.id.input_bus);
         input_station = (TextView) findViewById(R.id.input_station);
+        getOffStation = (TextView) findViewById(R.id.getOffStation);///////////////////////////////////////////////////////
     }
 
     public void mOnPopupClick(View v){
@@ -90,6 +96,13 @@ public class GetAlarmInfo extends AppCompatActivity {
         intent.putExtra("RouteId", alarmInfo.getBus_routeId());
         intent.putExtra("RouteName", alarmInfo.getBus_number());
         startActivityForResult(intent, 2);
+    }
+
+    public void mOnPopupClick3(View v) {//////////////////////////////////////////////////////////////
+        Intent intent = new Intent(this,Alarm_stationActivity.class);
+        intent.putExtra("RouteId", alarmInfo.getBus_routeId());
+        intent.putExtra("RouteName", alarmInfo.getBus_number());
+        startActivityForResult(intent, 3);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -112,6 +125,18 @@ public class GetAlarmInfo extends AppCompatActivity {
                 input_station.setBackground(ContextCompat.getDrawable(GetAlarmInfo.this,R.drawable.searchboxoff));
                 alarmInfo.setBus_station(result[0]);
                 alarmInfo.setBus_stationId(result[1]);
+            }
+        }
+
+        if (requestCode == 3) {////////////////////////////////////////////////////////////
+            if (resultCode == RESULT_OK) {
+                String result[] = data.getStringArrayExtra("StationId");
+                getOffStation.setText(result[0]);
+                getOffStation.setBackground(ContextCompat.getDrawable(GetAlarmInfo.this,R.drawable.searchboxoff));
+                alarmInfo.setBus_station2(result[0]);
+                alarmInfo.setBus_stationId2(result[1]);
+                alarmInfo.setStationX(Double.parseDouble(result[2]));
+                alarmInfo.setStationY(Double.parseDouble(result[3]));
             }
         }
     }
@@ -159,10 +184,13 @@ public class GetAlarmInfo extends AppCompatActivity {
         intent.putExtra("BusNumber", alarmInfo.getBus_number());
         intent.putExtra("StationId", alarmInfo.getBus_stationId());
         intent.putExtra("REQCODE2", alarmInfo.getRequestCode2());
+        intent.putExtra("stationX", alarmInfo.getStationX());///////////////////////////////////////////////////////////////
+        intent.putExtra("stationY", alarmInfo.getStationY());/////////////////////////////////////////////////////////////
         //PendingIntent pIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         PendingIntent pIntent = PendingIntent.getBroadcast(this, alarmInfo.getRequestCode1(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Toast.makeText(getApplicationContext(), "새로운 알람이 저장되었습니다", Toast.LENGTH_SHORT).show();
+
 
         //long oneday = 24 * 60 * 60 * 1000;
         long interval = 1000 * 60* 60 *24; //24시간
@@ -186,10 +214,10 @@ public class GetAlarmInfo extends AppCompatActivity {
         View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (gapPicker.getVisibility() == View.VISIBLE) {
-                    gapPicker.setVisibility(View.GONE);
-                    txtGapTime.setBackground(ContextCompat.getDrawable(GetAlarmInfo.this,R.drawable.searchboxoff));
-                }
+//                if (gapPicker.getVisibility() == View.VISIBLE) {
+//                    gapPicker.setVisibility(View.GONE);
+//                    txtGapTime.setBackground(ContextCompat.getDrawable(GetAlarmInfo.this,R.drawable.searchboxoff));
+//                }
 
                 dialog = new TimePickerDialog(GetAlarmInfo.this,
                         android.R.style.Theme_Holo_Light_Dialog, new TimePickerDialog.OnTimeSetListener() {
@@ -217,43 +245,82 @@ public class GetAlarmInfo extends AppCompatActivity {
     }
 
     private void getGapTime() {
-        final ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
+        //final ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
+
+        final Dialog gapTimeDialog = new Dialog(this);
+        gapTimeDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        gapTimeDialog.setContentView(R.layout.numberpicker);
+
+        Button okBtn = (Button) gapTimeDialog.findViewById(R.id.okBtn);
+        Button cancelBtn = (Button) gapTimeDialog.findViewById(R.id.cancelBtn);
+
+        final NumberPicker np = (NumberPicker) gapTimeDialog.findViewById(R.id.numberPicker);
+        np.setMinValue(1);
+        np.setMaxValue(15);
+        np.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+        np.setWrapSelectorWheel(false);
+        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
+
+            }
+        });
+
+        okBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txtGapTime.setText(String.valueOf(np.getValue()));
+                alarmInfo.setGapTime(Integer.parseInt(String.valueOf(np.getValue())));
+                txtGapTime.setBackground(ContextCompat.getDrawable(GetAlarmInfo.this,R.drawable.searchboxoff));
+                gapTimeDialog.dismiss();
+            }
+        });
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gapTimeDialog.dismiss();
+            }
+        });
+
+
 
         txtGapTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (gapPicker.getVisibility() == View.GONE) {
-                    gapPicker.setVisibility(View.VISIBLE);
-                    txtGapTime.setBackground(ContextCompat.getDrawable(GetAlarmInfo.this,R.drawable.searchboxon));
-                }
-                else {
-                    gapPicker.setVisibility(View.GONE);
-                    txtGapTime.setBackground(ContextCompat.getDrawable(GetAlarmInfo.this,R.drawable.searchboxoff));
-                }
+                gapTimeDialog.show();
+//                if (gapPicker.getVisibility() == View.GONE) {
+//                    gapPicker.setVisibility(View.VISIBLE);
+//                    txtGapTime.setBackground(ContextCompat.getDrawable(GetAlarmInfo.this,R.drawable.searchboxon));
+//                }
+//                else {
+//                    gapPicker.setVisibility(View.GONE);
+//                    txtGapTime.setBackground(ContextCompat.getDrawable(GetAlarmInfo.this,R.drawable.searchboxoff));
+//                }
             }
         });
 
-        gapPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-        gapPicker.setMinValue(1);
-        gapPicker.setMaxValue(15);
-        gapPicker.setWrapSelectorWheel(false);
-
-        gapPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                txtGapTime.setText(numberPicker.getValue() + "");
-                alarmInfo.setGapTime(numberPicker.getValue());
-            }
-        });
-
-        gapPicker.setOnClickListener(new NumberPicker.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (gapPicker.getVisibility() == View.VISIBLE) {
-                    gapPicker.setVisibility(View.GONE);
-                    txtGapTime.setBackground(ContextCompat.getDrawable(GetAlarmInfo.this,R.drawable.searchboxoff));
-                }
-            }
-        });
+//        gapPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+//        gapPicker.setMinValue(1);
+//        gapPicker.setMaxValue(15);
+//        gapPicker.setWrapSelectorWheel(false);
+//
+//        gapPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+//            @Override
+//            public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+//                txtGapTime.setText(numberPicker.getValue() + "");
+//                alarmInfo.setGapTime(numberPicker.getValue());
+//            }
+//        });
+//
+//        gapPicker.setOnClickListener(new NumberPicker.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (gapPicker.getVisibility() == View.VISIBLE) {
+//                    gapPicker.setVisibility(View.GONE);
+//                    txtGapTime.setBackground(ContextCompat.getDrawable(GetAlarmInfo.this,R.drawable.searchboxoff));
+//                }
+//            }
+//        });
     }
 }

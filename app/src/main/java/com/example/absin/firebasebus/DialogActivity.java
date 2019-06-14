@@ -84,6 +84,8 @@ public class DialogActivity extends AppCompatActivity {
         String result = intent.getStringExtra("predict");
         String result2[] = result.split(",");
         String busNumber = intent.getStringExtra("BusNumber");
+        double stationX = intent.getDoubleExtra("stationX", 0);///////////////////////////////////////////////
+        double stationY = intent.getDoubleExtra("stationY", 0);//////////////////////////////////////////////////
 
         bus_number.setText(busNumber);
 
@@ -120,7 +122,8 @@ public class DialogActivity extends AppCompatActivity {
 
 
         //현재 시간 받아서 날짜 표시
-        timeView.setText(Integer.toString(hour) + " : " + minute_sub);
+        //timeView.setText(Integer.toString(hour) + " : " + minute_sub);
+        timeView.setText("7" + " : " + "35");
 
         //화면이 꺼져있거나 잠겨있을때 다 무시하고 알람표시
         final Window win = getWindow();
@@ -150,11 +153,15 @@ public class DialogActivity extends AppCompatActivity {
 //            alarmManager.cancel(sender);
 //        }
 
+        final Intent intent3 = new Intent(this, GetOffAlarm.class);//////////////////////////////////////////////////////
+        intent3.putExtra("stationX", stationX);//////////////////////////////////////////////////////////////////
+        intent3.putExtra("stationY", stationY);/////////////////////////////////////////////////////////////////////
         get_bus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //switchIcon1.switchState();
                 alarmManager.cancel(sender);
+                startActivity(intent3);////////////////////////////////////////////
                 finish();
             }
         });

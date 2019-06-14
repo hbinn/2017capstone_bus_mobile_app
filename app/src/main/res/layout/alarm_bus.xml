@@ -24,6 +24,9 @@
             android:layout_weight="1"
             android:background="@null"
             android:textCursorDrawable="@drawable/cursor_color"
+            android:textSize="15dp"
+            android:inputType="numberSigned|number"
+            android:digits="0123456789-"
             android:hint="버스 입력" />
 
         <!--<ImageView-->

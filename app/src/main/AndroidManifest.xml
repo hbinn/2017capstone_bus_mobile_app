@@ -63,7 +63,7 @@
 
         </activity>
 
-
+        <activity android:name=".GetOffAlarm"/>////////////////////////////////////////
 
 
         <activity
@@ -93,9 +93,7 @@
         <!--
         <activity android:name=".BusStop_activity"/>-->
 
-
-
-
+        <service android:name=".GetOffService" android:process=":getoff_service" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"

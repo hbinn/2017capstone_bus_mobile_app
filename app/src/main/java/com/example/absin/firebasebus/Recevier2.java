@@ -28,6 +28,8 @@ public class Recevier2 extends BroadcastReceiver  {
     String result = null;
     String endTime2;
     //keyword1이 정류장이고 keyword2가 버스 아이디
+    double stationX;///////////////////////////////////////////////////////////
+    double stationY;/////////////////////////////////////////////////////////////
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -38,6 +40,8 @@ public class Recevier2 extends BroadcastReceiver  {
         bus_number = intent.getStringExtra("BusNumber");
         REQCODE2 = intent.getIntExtra("REQCODE2", -1);
         endTime2 = intent.getStringExtra("endTime2");
+        stationX = intent.getDoubleExtra("stationX", 0);//////////////////////////////////////////////////////////
+        stationY = intent.getDoubleExtra("stationY", 0);//////////////////////////////////////////////////
 
 
         Intent intent2 = new Intent(context, Recevier2.class);
@@ -72,14 +76,16 @@ public class Recevier2 extends BroadcastReceiver  {
             int pTime1 = Integer.parseInt(arrResult[0]);
             int pTime2 = Integer.parseInt(arrResult[1]);
 
-            if ((pTime1 > gapTime - 4 && pTime1 < gapTime + 4)
-                    || (pTime2 > gapTime - 4 && pTime2 < gapTime + 4)) {
+            if ((pTime1 > gapTime - 2 && pTime1 < gapTime + 2)
+                    || (pTime2 > gapTime - 2 && pTime2 < gapTime + 2)) {
 
                 Intent intent_dialog = new Intent(context.getApplicationContext(), DialogActivity.class);
                 //intent_dialog.putExtra("endTime", endTime);
                 intent_dialog.putExtra("predict", result);
                 intent_dialog.putExtra("BusNumber", bus_number);
                 intent_dialog.putExtra("REQCODE2", REQCODE2);
+                intent_dialog.putExtra("stationX", stationX);////////////////////////////////////////////////////////////////
+                intent_dialog.putExtra("stationY", stationY);/////////////////////////////////////////////////////////////////
                 intent_dialog.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 //이거때문에 뒤로가기 하면 아무것도 안되는 것 같음. 원래 설정화면에서 알람이 발생했을때 뒤로 가면 그전의 화면이었던 설정화면이 나왔었다.
                 context.startActivity(intent_dialog);

@@ -184,6 +184,8 @@ public class Alarm_stationActivity extends AppCompatActivity {
                 boolean b_stationName = false;
                 boolean b_mobileNo =false;
                 boolean b_stationId = false;
+                boolean b_x = false;///////////////////////////////////////////////////
+                boolean b_y = false;//////////////////////////////////////////////////
 
                 URL url = new URL(requestUrl);
                 InputStream is = url.openStream();
@@ -213,6 +215,8 @@ public class Alarm_stationActivity extends AppCompatActivity {
                             if (parser.getName().equals("mobileNo")) b_mobileNo = true;
                             if(parser.getName().equals("stationId")) b_stationId = true;
                             if(parser.getName().equals("stationName")) b_stationName = true;
+                            if (parser.getName().equals("x"))  b_x = true;////////////////////////////////////////////////////;
+                            if (parser.getName().equals("y")) b_y = true;//////////////////////////////////////////////////////////
 
                             break;
                         case XmlPullParser.TEXT:
@@ -225,6 +229,12 @@ public class Alarm_stationActivity extends AppCompatActivity {
                             } else if(b_stationName) {
                                 bus.setStationName(parser.getText());
                                 b_stationName = false;
+                            } else if (b_x) {/////////////////////////////////////////////////////////
+                                bus.setX(parser.getText());
+                                b_x = false;
+                            } else if (b_y) {///////////////////////////////////////////////////////
+                                bus.setY(parser.getText());
+                                b_y = false;
                             }
 
                             break;
@@ -234,12 +244,6 @@ public class Alarm_stationActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
-
-
-
-
             return null;
         }
 

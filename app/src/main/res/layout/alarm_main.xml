@@ -83,5 +83,4 @@
             android:divider="#FFF5F5F5">
         </ListView>
     </FrameLayout>
-
 </LinearLayout>

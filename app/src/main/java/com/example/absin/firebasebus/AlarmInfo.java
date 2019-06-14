@@ -23,6 +23,10 @@ public class AlarmInfo implements Parcelable {
     String bus_number;
     String bus_stationId;
     String bus_station;
+    String bus_stationId2;//////////////////////////////////////////
+    String bus_station2;/////////////////////////////////////////////
+    double stationX;//////////////////////////////////////
+    double stationY;////////////////////////////////
 
     //private AlarmManager am;
 
@@ -45,6 +49,11 @@ public class AlarmInfo implements Parcelable {
         //수정부분
         requestCode1 = parcel.readInt();
         requestCode2 = parcel.readInt();
+
+        bus_stationId2 = parcel.readString();///////////////////////////////////////////////////
+        bus_station2 = parcel.readString();/////////////////////////////////////////////////////////
+        stationX = parcel.readDouble();/////////////////////////////////////////////////////////
+        stationY = parcel.readDouble();////////////////////////////////////////////////
     }
 
     public static final Creator<AlarmInfo> CREATOR = new Creator<AlarmInfo>() {
@@ -151,7 +160,39 @@ public class AlarmInfo implements Parcelable {
         this.bus_station = bus_station;
     }
 
-//    public AlarmManager getAm() {
+    public String getBus_stationId2() {///////////////////////////////////////////////
+        return bus_stationId2;
+    }
+
+    public void setBus_stationId2(String bus_stationId2) {////////////////////////////////////////////////
+        this.bus_stationId2 = bus_stationId2;
+    }
+
+    public String getBus_station2() {////////////////////////////////////////////////////////////
+        return bus_station2;
+    }
+
+    public void setBus_station2(String bus_station2) {//////////////////////////////////////////////////////
+        this.bus_station2 = bus_station2;
+    }
+
+    public double getStationX() {////////////////////////////////////
+        return stationX;
+    }
+
+    public void setStationX(double stationX) {//////////////////////////////////////////
+        this.stationX = stationX;
+    }
+
+    public double getStationY() {///////////////////////////////////////////////
+        return stationY;
+    }
+
+    public void setStationY(double stationY) {///////////////////////////////////////////////
+        this.stationY = stationY;
+    }
+
+    //    public AlarmManager getAm() {
 //        return am;
 //    }
 //
@@ -177,5 +218,10 @@ public class AlarmInfo implements Parcelable {
         //수정부분
         parcel.writeInt(requestCode1);
         parcel.writeInt(requestCode2);
+
+        parcel.writeString(bus_stationId2);/////////////////////////////////////////
+        parcel.writeString(bus_station2);///////////////////////////////////////////
+        parcel.writeDouble(stationX);///////////////////////////////////////////////
+        parcel.writeDouble(stationY);///////////////////////////////////////////////
     }
 }

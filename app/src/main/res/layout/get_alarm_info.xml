@@ -18,8 +18,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            android:gravity="center"
-           >
+            android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -63,8 +62,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="11"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginHorizontal="7dp"
+        android:layout_marginTop="5dp"
         android:background="#FFFFFF"
         android:orientation="vertical"
         android:weightSum="10">
@@ -171,8 +170,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="18"
-        android:layout_marginHorizontal="5dp"
+        android:layout_weight="16"
+        android:layout_marginHorizontal="7dp"
         android:background="#FFFFFF"
         android:orientation="vertical"
         android:weightSum="20">
@@ -287,12 +286,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="22"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginBottom="4dp"
+        android:layout_weight="24"
+        android:layout_marginHorizontal="7dp"
+        android:layout_marginBottom="5dp"
         android:background="#FFFFFF"
         android:orientation="vertical"
-        android:weightSum="19">
+        android:weightSum="26">
 
         <TextView
             android:layout_width="wrap_content"
@@ -369,30 +368,34 @@
                 android:hint="승차정류장 입력" />
         </LinearLayout>
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:layout_weight="7"-->
-            <!--android:gravity="center_vertical"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:paddingLeft="20dp"-->
-            <!--android:paddingRight="30dp">-->
+        <LinearLayout
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="mOnPopupClick3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="30dp">
 
-            <!--<ImageView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginRight="20dp"-->
-                <!--android:adjustViewBounds="true"-->
-                <!--android:maxHeight="38dp"-->
-                <!--android:maxWidth="38dp"-->
-                <!--android:src="@drawable/ic_busstop2" />-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:adjustViewBounds="true"
+                android:maxHeight="38dp"
+                android:maxWidth="38dp"
+                android:src="@drawable/ic_busstop2" />
 
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@drawable/searchboxon"-->
-                <!--android:gravity="center_vertical"-->
-                <!--android:hint="하차정류장 입력" />-->
-        <!--</LinearLayout>-->
+            <TextView
+                android:id="@+id/getOffStation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/searchboxon"
+                android:gravity="center_vertical"
+                android:hint="하차정류장 입력" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
