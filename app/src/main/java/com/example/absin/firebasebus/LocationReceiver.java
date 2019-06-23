@@ -9,6 +9,7 @@ import android.widget.Toast;
 /**
  * Created by Junny_PC on 2019-06-11.
  */
+// ㅇㅇ
 
 public class LocationReceiver extends BroadcastReceiver {
     @Override
