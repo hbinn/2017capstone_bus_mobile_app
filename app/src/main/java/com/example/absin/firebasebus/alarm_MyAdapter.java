@@ -132,14 +132,15 @@ public class alarm_MyAdapter extends BaseAdapter {
             }
         });
 
-        //추가
+
+
         swOnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 if(isChecked) {
-//                    if(check_first==1) {
-//                        //do nothing. 처음으로 실행된거라서 자동으로 알람이 설정되었다.
-//                    }else {
+
 
                     boolean week[] = new boolean[8];
                     week[0]= false;
@@ -164,7 +165,7 @@ public class alarm_MyAdapter extends BaseAdapter {
                     intent.putExtra("REQCODE2", myItem.getREQCODE2());
                     PendingIntent pIntent = PendingIntent.getBroadcast(context, Integer.parseInt(myItem.getREQCODE1()), intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                    AlarmManager am = (AlarmManager) context.getSystemService(ALARM_SERVICE);
+                    AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
                     String start_sub[] = (myItem.getStartTime()).split(" ");
                     Calendar cal = Calendar.getInstance();
@@ -182,16 +183,17 @@ public class alarm_MyAdapter extends BaseAdapter {
                 }else {
                    // check_first=2; //한번 꺼진거 표시
 
-//                    Intent intent1 = new Intent(context,AlarmReceiver.class);
-//                    Intent intent2 = new Intent(context, Recevier2.class);
-//                    PendingIntent sender1 = PendingIntent.getBroadcast(context, Integer.parseInt(myItem.getREQCODE1()), intent1, 0);
-//                    PendingIntent sender2 = PendingIntent.getBroadcast(context, Integer.parseInt(myItem.getREQCODE2()), intent2, 0);
-//                    AlarmManager am = (AlarmManager) context.getSystemService(ALARM_SERVICE);
-//                    am.cancel(sender1);
-//                    am.cancel(sender2);
+                    Intent intent1 = new Intent(context,AlarmReceiver.class);
+                    Intent intent2 = new Intent(context, Recevier2.class);
+                    PendingIntent sender1 = PendingIntent.getBroadcast(context, Integer.parseInt(myItem.getREQCODE1()), intent1, 0);
+                    PendingIntent sender2 = PendingIntent.getBroadcast(context, Integer.parseInt(myItem.getREQCODE2()), intent2, 0);
+                    AlarmManager am2 = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                    am2.cancel(sender2);
+                    am2.cancel(sender1);
 
-                    ((AlarmActivity) context).cancelAlarm(Integer.parseInt(myItem.getREQCODE1()),
-                            Integer.parseInt(myItem.getREQCODE2()));
+//
+//                    ((AlarmActivity) context).cancelAlarm(Integer.parseInt(myItem.getREQCODE1()),
+//                            Integer.parseInt(myItem.getREQCODE2()));
 
                     Toast.makeText(context, "알람이 꺼졌습니다.", Toast.LENGTH_SHORT).show();
                     myItem.setOn_off("off");
@@ -202,6 +204,7 @@ public class alarm_MyAdapter extends BaseAdapter {
                 ((AlarmActivity) context).setLayout();
             }
         });
+
 
         return view;
     }

@@ -13,7 +13,7 @@ import java.util.Calendar;
  * Created by Junny_PC on 2019-05-25.
  */
 
-public class AlarmReceiver extends BroadcastReceiver {
+public class AlarmReceiver2 extends BroadcastReceiver {
 
     private AlarmManager am2;
     String endTime;
@@ -23,8 +23,6 @@ public class AlarmReceiver extends BroadcastReceiver {
     String bus_number;
     String bus_stationId;
     int REQCODE2;
-    double stationX;////////////////////////////////////////////////
-    double stationY;/////////////////////////////////////////////
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -35,13 +33,11 @@ public class AlarmReceiver extends BroadcastReceiver {
         bus_number = intent.getStringExtra("BusNumber");
         bus_stationId = intent.getStringExtra("StationId");
         REQCODE2 = intent.getIntExtra("REQCODE2", -1);
-        stationX = intent.getDoubleExtra("stationX", 0);//////////////////////////////////////////////////////////////
-        stationY = intent.getDoubleExtra("stationY", 0);/////////////////////////////////////////////////////////
 
         endTime2 = intent.getStringExtra("endTime2");
 
         am2 = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent2 = new Intent(context, Recevier2.class);
+        Intent intent2 = new Intent(context, Recevier3.class);
         intent2.putExtra("endTime", endTime);
         intent2.putExtra("endTime2", endTime2);
         intent2.putExtra("gapTime", gapTime);
@@ -49,10 +45,8 @@ public class AlarmReceiver extends BroadcastReceiver {
         intent2.putExtra("BusNumber", bus_number);
         intent2.putExtra("StationId", bus_stationId);
         intent2.putExtra("REQCODE2", REQCODE2);
-        intent2.putExtra("stationX", stationX);//////////////////////////////////////////////////
-        intent2.putExtra("stationY", stationY);////////////////////////////////////////////////////
         //PendingIntent pIntent = PendingIntent.getBroadcast(context, 100, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
-        PendingIntent pIntent = PendingIntent.getBroadcast(context, REQCODE2, intent2,0);
+        PendingIntent pIntent = PendingIntent.getBroadcast(context, REQCODE2, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Calendar cal = Calendar.getInstance();
         if (!week[cal.get(Calendar.DAY_OF_WEEK)]) {

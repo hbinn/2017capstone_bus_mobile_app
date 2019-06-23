@@ -187,7 +187,7 @@ public class GetAlarmInfo extends AppCompatActivity {
         intent.putExtra("stationX", alarmInfo.getStationX());///////////////////////////////////////////////////////////////
         intent.putExtra("stationY", alarmInfo.getStationY());/////////////////////////////////////////////////////////////
         //PendingIntent pIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        PendingIntent pIntent = PendingIntent.getBroadcast(this, alarmInfo.getRequestCode1(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pIntent = PendingIntent.getBroadcast(this, alarmInfo.getRequestCode1(), intent, 0);
 
         Toast.makeText(getApplicationContext(), "새로운 알람이 저장되었습니다", Toast.LENGTH_SHORT).show();
 
