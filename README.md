@@ -24,3 +24,6 @@ We're four student of Kyonggi uni's computer science dept and our team name is "
 If you have any question or find a problem, please let us know. You will be always welcome.
 
 e-mail: absinthe4902@gmail.com
+
+## exmple
+![image](https://user-images.githubusercontent.com/50905732/142825538-1b3a3677-fe91-41d1-b35b-828f33e24a0b.png)
